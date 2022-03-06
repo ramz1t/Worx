@@ -1,7 +1,7 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.future import create_engine
 from sqlalchemy.orm import sessionmaker
-import models.__base__ as base
+import models.data as base
 
 base.Base = declarative_base()
 
