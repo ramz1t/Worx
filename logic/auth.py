@@ -2,10 +2,10 @@ from fastapi.responses import JSONResponse
 from fastapi import status
 
 from data.data import Sessions
-from user.helpers import get_user_by_username
-from auth.models import AuthSession, ApiNewAuth
-from auth.helpers import generate_token
-from user.helpers import hashing_password
+from func.helpers import get_user_by_username
+from models.auth import AuthSession, ApiNewAuth
+from func.helpers import generate_token
+from func.helpers import hashing_password
 
 
 def new_auth(auth: ApiNewAuth) -> str or JSONResponse:
