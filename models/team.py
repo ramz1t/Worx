@@ -8,3 +8,4 @@ class Team(Base):
     __tablename__ = 'teams'
     id = Column(Integer, primary_key=True)
     name = Column(String)
+    url = Column(String)
