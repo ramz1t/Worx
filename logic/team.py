@@ -1,5 +1,5 @@
 from data.data import Sessions
-from models.team import Team
+from models.team import Team, ApiCreateTeam
 
 
 def get_team_by_id(team_id: int) -> Team or None:
@@ -26,3 +26,7 @@ def change_team_url(url: str, id: int) -> bool:
         team.url = url
         session.add(team)
         session.commit()
+
+
+def create_team(team: ApiCreateTeam):
+    return Team(name=team.name, url=team.url)
