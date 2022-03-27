@@ -58,9 +58,10 @@ def get_repo_commits(Auth_params, repo_name, info=False):
     url = urls['commits_url'][:urls['commits_url'].find('{')]
     commits = requests.get(url, auth=Auth_params).json()
     if info:
+        commitinfo = []
         for commit in commits:
-            commitinfo = requests.get(commit['url'], auth=Auth_params).json()
-            return commitinfo
+            commitinfo.append(requests.get(commit['url'], auth=Auth_params).json())
+        return commitinfo
     return commits
 
 
@@ -92,8 +93,37 @@ def get_repo_contributors(Auth_params, repo_name):
     return contributors
 
 
+def get_repo_yearly_stats(Auth_params, repo_name):
+    url = f'https://api.github.com/repos/{Auth_params[0]}/{repo_name}/stats/commit_activity'
+    yearly_stats = requests.get(url, auth=Auth_params).json()
+    return yearly_stats
+
+
+def get_repo_contributors_stats(Auth_params, repo_name):
+    url = f'https://api.github.com/repos/{Auth_params[0]}/{repo_name}/stats/contributors'
+    '''
+        Returns the total number of commits authored by the contributor. 
+        In addition, the response includes a Weekly Hash (weeks array) with the following information:
+
+            w - Start of the week, given as a Unix timestamp.
+            a - Number of additions
+            d - Number of deletions
+            c - Number of commits
+        '''
+    contributors_stats = requests.get(url, auth=Auth_params)
+    return contributors_stats
+
+
+def get_user_repo_weekly_stats(Auth_params, repo_name):
+    url = f'https://api.github.com/repos/{Auth_params[0]}/{repo_name}/stats/code_frequency'
+
+    '''
+    Returns a weekly aggregate of the number of additions and deletions pushed to a repository.
+    '''
+    weekly_stats = requests.get(url, auth=Auth_params).json()
+    return weekly_stats
 def get_user_repo_stats(Auth_params, repo_name):
-    url=f'https://api.github.com/repos/{Auth_params[0]}/{repo_name}/community/profile'
+    url = f'https://api.github.com/repos/{Auth_params[0]}/{repo_name}/community/profile'
 
     '''
     return all community profile metrics, including an overall health score, repository description, the presence of 
@@ -101,24 +131,5 @@ def get_user_repo_stats(Auth_params, repo_name):
     , PULL_REQUEST_TEMPLATE, README, and CONTRIBUTING files.
     '''
 
-    url=f'https://api.github.com/repos/{Auth_params[0]}/{repo_name}/stats/code_frequency'
-
-    '''
-    Returns a weekly aggregate of the number of additions and deletions pushed to a repository.
-    '''
-
-    url=f'https://api.github.com/repos/{Auth_params[0]}/{repo_name}/stats/contributors'
-
-    '''
-    Returns the total number of commits authored by the contributor. 
-    In addition, the response includes a Weekly Hash (weeks array) with the following information:
-
-        w - Start of the week, given as a Unix timestamp.
-        a - Number of additions
-        d - Number of deletions
-        c - Number of commits
-    '''
-    stats = requests.get(url, auth=Auth_params).json()
-    print(stats)
-    #for stat in stats:
-    #    print(JsonOutput(**stat))
+    repo_stats = requests.get(url, auth=Auth_params).json()
+    return repo_stats
