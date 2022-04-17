@@ -21,10 +21,8 @@ def change_page(data, filename: str):
         soup = bs4.BeautifulSoup(text, 'lxml')
 
     for element_id in data:
-        print(element_id)
-        tag = soup.select(element_id)
-        tag[0].string = data[element_id]
-        print(tag)
+        tag = soup.select('#' + element_id)
+        tag[0].string = str(data[element_id])
 
     with open(filename, "w") as file:
         file.write(str(soup))
