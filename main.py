@@ -1,15 +1,18 @@
 from fastapi import FastAPI, requests, status
 from fastapi.responses import JSONResponse
 import uvicorn
-from git.gitfuncs import get_repo_commits
+from git.gitfuncs import get_repo_commits, get_repo_contributors
+from git.params import Auth_params
 
 app = FastAPI()
 
 
-@app.get('/repo/{repourl}')
-def get_repo_stats(repourl):
-    commits = get_repo_commits(repo_name=repourl, auth_params=('username: rakomorzh',
-'GIT_TOKEN: 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'))
+@app.get('/repo/{repourl}/{username}')
+def get_repo_stats(repourl, username):
+    #print(repourl)
+    #repourl = 'https://github.com/' + repourl[:-4].replace('.', '/') + '.git'
+    #print(repourl)
+    commits = get_repo_contributors(repo_name=repourl, auth_params=Auth_params, users_name=username)
     return commits
 
 

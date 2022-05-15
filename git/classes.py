@@ -1,6 +1,6 @@
 from time import strftime, gmtime
 
-from gitfuncs import get_user, get_user_repos, get_repo_contributors_stats
+from git.gitfuncs import get_user, get_user_repos, get_repo_contributors_stats
 
 DAY_DUR = 24 * 60 * 60
 

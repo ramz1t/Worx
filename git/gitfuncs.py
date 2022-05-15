@@ -1,5 +1,6 @@
 import requests
-from urls import urls
+
+from git.urls import urls
 
 
 def get_user(auth_params, username=''):
