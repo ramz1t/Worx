@@ -9,11 +9,10 @@ app = FastAPI()
 
 @app.get('/repo/{repourl}/{username}')
 def get_repo_stats(repourl, username):
-    #print(repourl)
-    #repourl = 'https://github.com/' + repourl[:-4].replace('.', '/') + '.git'
-    #print(repourl)
     commits = get_repo_contributors(repo_name=repourl, auth_params=Auth_params, users_name=username)
-    return commits
+    for i in commits:
+        if i['login'] == username:
+            return i
 
 
 if __name__ == "__main__":  # Запуск сервера
