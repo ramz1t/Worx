@@ -5,7 +5,7 @@ from pydantic import BaseModel
 class Repo(Base):
     """
     """
-    __tablename__ = 'teams'
+    __tablename__ = 'repos'
     id = Column(Integer, primary_key=True)
     name = Column(String)
     host_username = Column(String)
