@@ -1,17 +1,17 @@
-from models.data import Base
+from data.data import Base
 from sqlalchemy import Column, Integer, String
 from pydantic import BaseModel
 
-class Team(Base):
+class Repo(Base):
     """
     """
     __tablename__ = 'teams'
     id = Column(Integer, primary_key=True)
     name = Column(String)
-    url = Column(String)
+    host_username = Column(String)
 
 
-class ApiCreateTeam(BaseModel):
+class ApiCreateRepo(BaseModel):
     id: int
     name: str
-    url: str
+    host_username: str
