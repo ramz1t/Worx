@@ -12,7 +12,6 @@ class User(Base):
     password = Column(String)
     api_key = Column(String)
 
-
 class ApiCreateUser(BaseModel):
     email: str
     password: str

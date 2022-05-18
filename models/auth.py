@@ -11,4 +11,4 @@ class ApiNewAuth(BaseModel):
 class AuthSession(Base):
     __tablename__ = 'AuthSessions'
     token = Column(String, primary_key=True)
-    user_id = Column(Integer)
+    id = Column(Integer)
