@@ -3,6 +3,7 @@ from fastapi.responses import JSONResponse
 import uvicorn
 from git.gitfuncs import get_repo_commits, get_repo_contributors, get_user_repo_stats
 from git.params import Auth_params
+from logic.repo import get_repo_by_name
 import json
 
 
@@ -17,7 +18,8 @@ def get_repo_user_commits(reponame, username):
 
 @app.get('/stats/{reponame}')
 def get_repo_stats(reponame):
-    username = 'AlexGyver'
+    repo = get_repo_by_name(repo_name=reponame)
+    username = repo.owner_username
     stats = get_user_repo_stats(repo_name=reponame, auth_params=Auth_params, users_name=username)
     result = {'description': stats['description'], 'link': 'https://github.com/{}/{}'.format(username, reponame)}
     return result
