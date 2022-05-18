@@ -1,6 +1,6 @@
 from fastapi.responses import JSONResponse
 from fastapi import status
-from data import User
+from models.user import User
 from lol import Sessions
 
 

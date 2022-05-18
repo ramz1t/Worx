@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from models.data import Base
+from data.data import Base
 from sqlalchemy import Column, Integer, String
 
 
@@ -17,6 +17,3 @@ class ApiCreateUser(BaseModel):
     email: str
     password: str
     name: str
-
-
-

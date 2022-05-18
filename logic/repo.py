@@ -4,6 +4,15 @@ from fastapi.responses import JSONResponse
 from fastapi import status
 
 
+def create_new_repo(repo) -> JSONResponse:
+    with Sessions() as session:
+        if not session.query(Repo).filter_by(name=repo.name).first() is None:
+            return JSONResponse(status_code=status.HTTP_409_CONFLICT, content='repo already in use')
+        session.add(repo)
+        session.commit()
+    return JSONResponse(status_code=status.HTTP_201_CREATED, content='Successfully')
+
+
 def get_repo_by_id(repo_id: int) -> Repo or None:
     with Sessions() as session:
         return session.query(Repo).filter_by(id=repo_id).first()
@@ -25,19 +34,19 @@ def change_repo_name(name: str, id: int) -> JSONResponse:
     return JSONResponse(status_code=status.HTTP_200_OK, content='name changed')
 
 
-def change_repo_hostusername(host_username: str, id: int) -> JSONResponse:
+def change_repo_ownerusername(owner_username: str, id: int) -> JSONResponse:
     with Sessions() as session:
         repo = get_repo_by_id(id)
         if repo is None:
             return JSONResponse(status_code=status.HTTP_404_NOT_FOUND, content='no repo with this id')
-        repo.host_username = host_username
+        repo.owner_username = owner_username
         session.add(repo)
         session.commit()
     return JSONResponse(status_code=status.HTTP_200_OK, content='url changed')
 
 
 def create_repo(repo: ApiCreateRepo):
-    return Repo(name=repo.name, host_username=repo.host_username)
+    return Repo(name=repo.name, owner_username=repo.owner_username)
 
 
 def delete_repo_by_id(repo_id: int):
