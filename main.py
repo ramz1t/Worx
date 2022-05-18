@@ -12,16 +12,20 @@ app = FastAPI()
 
 @app.get('/commits/{reponame}/{username}')
 def get_repo_user_commits(reponame, username):
-    commits = get_repo_contributors(repo_name=reponame, auth_params=Auth_params, users_name=username)
-    return commits
+    repo = get_repo_by_name(repo_name=reponame)
+    owner_username = repo.owner_username
+    commits = get_repo_contributors(repo_name=reponame, auth_params=Auth_params, users_name=owner_username)
+    for i in commits:
+        if i['login'] == username:
+            return i['contributions']
 
 
 @app.get('/stats/{reponame}')
 def get_repo_stats(reponame):
     repo = get_repo_by_name(repo_name=reponame)
-    username = repo.owner_username
-    stats = get_user_repo_stats(repo_name=reponame, auth_params=Auth_params, users_name=username)
-    result = {'description': stats['description'], 'link': 'https://github.com/{}/{}'.format(username, reponame)}
+    owner_username = repo.owner_username
+    stats = get_user_repo_stats(repo_name=reponame, auth_params=Auth_params, users_name=owner_username)
+    result = {'description': stats['description'], 'link': 'https://github.com/{}/{}'.format(owner_username, reponame)}
     return result
 
 

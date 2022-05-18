@@ -4,10 +4,11 @@ from fastapi.responses import JSONResponse
 from fastapi import status
 
 
-def create_new_repo(repo) -> JSONResponse:
+def create_new_repo(ApiRepo) -> JSONResponse:
     with Sessions() as session:
-        if not session.query(Repo).filter_by(name=repo.name).first() is None:
+        if not session.query(Repo).filter_by(name=ApiRepo.name).first() is None:
             return JSONResponse(status_code=status.HTTP_409_CONFLICT, content='repo already in use')
+        repo = Repo(name=ApiRepo.name, owner_username=ApiRepo.owner_username)
         session.add(repo)
         session.commit()
     return JSONResponse(status_code=status.HTTP_201_CREATED, content='Successfully')
@@ -59,7 +60,7 @@ def delete_repo_by_id(repo_id: int):
     return JSONResponse(status_code=status.HTTP_200_OK, content='repo deleted')
 
 
-def delete_repo_by_name(repo_name: int):
+def delete_repo_by_name(repo_name: str):
     with Sessions() as session:
         repo = session.query(Repo).filter_by(name=repo_name).first()
         if repo is None:
