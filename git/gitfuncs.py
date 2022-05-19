@@ -7,7 +7,6 @@ def get_user(auth_params, username=''):
     if username == '':
         username = auth_params['username']
     user = requests.get(urls['user_url'].format(username), auth=tuple(auth_params.values())).json()
-    print(user)
     return user
 
 
