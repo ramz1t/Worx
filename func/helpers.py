@@ -14,6 +14,6 @@ def generate_token() -> str:
     return secrets.token_hex(auth_token_len)
 
 
-def get_user_by_username(username: str) -> User or None:
+def get_user_by_email(email: str):
     with Sessions() as session:
-        return session.query(User).filter_by(username=username).first()
+        return session.query(User).filter_by(email=email).first()
