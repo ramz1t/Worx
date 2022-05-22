@@ -5,12 +5,13 @@ from data.data import Sessions
 
 
 def create_new_user(ApiUser) -> JSONResponse:
+    print("eaujsrtjsrtksrtk")
     with Sessions() as session:
         if not session.query(User).filter_by(email=ApiUser.email).first() is None:
             return JSONResponse(status_code=status.HTTP_409_CONFLICT, content='Username already in use')
         if len(ApiUser.password) < 8 or len(ApiUser.email) < 4:
             return JSONResponse(status_code=status.HTTP_400_BAD_REQUEST, content='Invalid data')
-        user = User(email=ApiUser.email, password=ApiUser.password)
+        user = User(email=ApiUser.email, password=ApiUser.password, gender=ApiUser.gender)
         session.add(user)
         session.commit()
     return JSONResponse(status_code=status.HTTP_201_CREATED, content='Successfully')

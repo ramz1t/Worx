@@ -33,7 +33,7 @@ def upgrade():
     op.create_table(
         'AuthSessions',
         sa.Column('token', sa.String, primary_key=True),
-        sa.Column('id', sa.Integer)
+        sa.Column('user_id', sa.Integer)
     )
 
 
