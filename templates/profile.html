@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <div class = "head"></div>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script type="text/javascript" src="../js/settings.js"></script>
+    <title>Profile</title>
+</head>
+<body>
+
+<div class = "nav"></div>
+<br>
+<br>
+<ul class="profile-list-group">
+  <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#Change_login">Change login</li>
+  <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#Change_password">Change password</li>
+  <li class="list-group-item">Change profile picture</li>
+    <div class="btn-group dropend">
+      <button type="button" class="btn btn-white dropdown-toggle" id="gender" data-bs-toggle="dropdown" aria-expanded="false" >
+        Gender
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="gender">
+          <li><a class="dropdown-item" href="#">Action</a></li>
+      </ul>
+    </div>
+  <li class="list-group-item text-danger" href="auth.html"><a class="profile_logout" href="auth.html"> Out </a></li>
+</ul>
+
+    <div class="profile_objects">
+        <img class="profile_img" width = "200" src="photos/1.png">
+        <div class = "profile_text">
+            <h1>Username</h1>
+            <h3 style="color:grey">Email</h3>
+        </div>
+    </div>
+
+
+
+<!-- login -->
+ <div class="modal fade" id="Change_login" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Change_login_popup">Change login</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="Old_login" placeholder="name@example.com">
+                    <label for="Old_login">Old Login</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="New_login" placeholder="name@example.com">
+                    <label for="New_login">New Login</label>
+                </div>
+            </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                 <button type="button" class="btn btn-custom text-white">Ok</button>
+             </div>
+        </div>
+    </div>
+</div>
+<!-- Password -->
+ <div class="modal fade" id="Change_password" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Change password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="Old_pass" placeholder="name@example.com">
+                    <label for="Old_pass">Old password</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="New_pass" placeholder="name@example.com">
+                    <label for="New_pass">New password</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="Repeat_new_pass" placeholder="name@example.com">
+                    <label for="Repeat_new_pass">Repeat new password</label>
+                </div>
+            </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                 <button type="button" class="btn btn-custom text-white">Ok</button>
+             </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+    $(function () {
+        $(".nav").load("components/navbar.html");
+    });
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        $(".head").load("components/head.html");
+    });
+</script>

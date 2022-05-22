@@ -59,7 +59,6 @@ def create_account(login, passhash, gender):
     return response
 
 
-
 from models.auth_token import Token
 from logic.auth import authenticate_user, ACCESS_TOKEN_EXPIRE_MINUTES, create_access_token, get_current_user, \
     oauth2_scheme
@@ -79,6 +78,11 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
         data={"sub": user.email}, expires_delta=access_token_expires
     )
     return {"access_token": access_token, "token_type": "bearer"}
+
+
+@app.get("/")
+def main_page():
+    return {"Hello": "World"}
 
 
 @app.get("/users/me/")

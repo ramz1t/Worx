@@ -1,0 +1,30 @@
+
+body{
+    padding-top:40px;
+    background-image: url("photos/bg.png");
+
+}
+
+.card{
+    margin:auto;
+}
+
+.btn{
+  margin: auto;
+  width: 102%;
+  padding: 10px;
+  padding-left:0px;
+  padding-right:25px;
+}
+
+.had{
+    text-align:center;
+    padding: 10px;
+}
+.link{
+    color:black !important;
+}
+
+.btn-custom{
+    background-color:#4527A0 !important;
+}
