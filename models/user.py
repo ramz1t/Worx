@@ -10,9 +10,7 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     email = Column(String)
     password = Column(String)
-    api_key = Column(String)
 
 class ApiCreateUser(BaseModel):
     email: str
     password: str
-    name: str
