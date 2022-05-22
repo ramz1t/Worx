@@ -44,9 +44,9 @@ def get_all_users(reponame):
     pass
 
 
-@app.post('/createaccount/{login}/{passhash}')
-def create_account(login, passhash):
-    user = ApiCreateUser(email=login, password=passhash)
+@app.post('/createaccount/{login}/{passhash}/{gender}')
+def create_account(login, passhash, gender):
+    user = ApiCreateUser(email=login, password=passhash, gender=gender)
     response = create_new_user(user)
     return response
 

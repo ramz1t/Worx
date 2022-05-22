@@ -15,3 +15,4 @@ class User(Base):
 class ApiCreateUser(BaseModel):
     email: str
     password: str
+    gender: str
