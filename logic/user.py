@@ -1,15 +1,16 @@
 from fastapi.responses import JSONResponse
 from fastapi import status
-from models.user import User
-from lol import Sessions
+from models.user import User, ApiCreateUser
+from data.data import Sessions
 
 
-def create_new_user(user) -> JSONResponse:
+def create_new_user(ApiUser) -> JSONResponse:
     with Sessions() as session:
-        if not session.query(User).filter_by(username=user.username).first() is None:
+        if not session.query(User).filter_by(email=ApiUser.email).first() is None:
             return JSONResponse(status_code=status.HTTP_409_CONFLICT, content='Username already in use')
-        if len(user.password) < 8 or len(user.username) < 4:
+        if len(ApiUser.password) < 8 or len(ApiUser.email) < 4:
             return JSONResponse(status_code=status.HTTP_400_BAD_REQUEST, content='Invalid data')
+        user = User(email=ApiUser.email, password=ApiUser.password)
         session.add(user)
         session.commit()
     return JSONResponse(status_code=status.HTTP_201_CREATED, content='Successfully')
