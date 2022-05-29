@@ -2,7 +2,8 @@
 body {
     background-image: url("photos/bg.png");
 }
-/* Navbar */
+
+/* navbar */
 .navphoto {
     border-radius: 50%;
 }
@@ -65,6 +66,12 @@ body {
     border-radius:15px;
 }
 
+.gender{
+    height:15px;
+}
+
+
+
 /* Stats */
 
 .cards{
@@ -79,7 +86,10 @@ body {
     margin: 75px;
     border-color: #4527a0 !important;
 }
-
+.graph1{
+    padding-left:0px;
+    padding-right:15px;
+}
 .card-body{
     border-radius: 15px !important;
 }

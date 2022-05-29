@@ -16,6 +16,7 @@ function submit() {
     var email = document.getElementById("email").value;
     var subemail = document.getElementById("repeatemail").value;
     var gender = document.querySelector('input[name="gender"]:checked').value;
+    console.log(gender);
     if (email.search("@") == -1 || email == "") {
         document.getElementById("email").classList.add('is-invalid');
         return;
@@ -37,7 +38,6 @@ function submit() {
     var passhash = stringToHash(pass);
     var url = SERVER_DOMAIN + '/createaccount/' + email + '/' + passhash + '/' + gender
     var response = fetch(url, {method: "POST", mode: "no-cors"});
-    console.log(response);
     document.getElementById("email").classList.remove('is-invalid');
     document.getElementById("repeatemail").classList.remove('is-invalid');
     document.getElementById("password").classList.remove('is-invalid');

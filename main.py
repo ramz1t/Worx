@@ -62,8 +62,8 @@ def create_account(login, passhash, gender):
     return response
 
 
-from fastapi import Response    #new
-from apis.utils import OAuth2PasswordBearerWithCookie    #new
+from fastapi import Response
+
 
 
 @app.post("/token", response_model=Token)
@@ -78,7 +78,7 @@ def login_for_access_token(response: Response,form_data: OAuth2PasswordRequestFo
     access_token = create_access_token(
         data={"sub": user.email}, expires_delta=access_token_expires
     )
-    response.set_cookie(key="access_token",value=f"Bearer {access_token}", httponly=True)  #set HttpOnly cookie in response
+    response.set_cookie(key="access_token", value=f"Bearer {access_token}", httponly=True)
     return {"access_token": access_token, "token_type": "bearer"}
 
 
@@ -111,6 +111,10 @@ async def read_users_me(current_user = Depends(get_current_user)):
 @app.get("/users/me/items/")
 async def read_own_items(token: str = Depends(oauth2_scheme)):
     return [{"item_id": "Foo", "owner": "current_user.username"}]
+
+
+@app.get("/Profile")
+def get_profile(current_user = Depends(get_current_user)):
 
 
 if __name__ == "__main__":  # Запуск сервера
