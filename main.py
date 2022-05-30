@@ -28,6 +28,7 @@ app = FastAPI()
 app.mount("/static", StaticFiles(directory="views/static"), name="static")
 templates = Jinja2Templates(directory="views/templates")
 
+
 @app.get('/commits/{reponame}/{username}')
 def get_repo_user_commits(reponame, username):
     repo = get_repo_by_name(repo_name=reponame)

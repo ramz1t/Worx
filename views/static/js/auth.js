@@ -1,15 +1,3 @@
-function stringToHash(string) {
-            var hash = 0;
-            if (string.length == 0) return hash;
-            for (i = 0; i < string.length; i++) {
-                char = string.charCodeAt(i);
-                hash = ((hash << 5) - hash) + char;
-                hash = hash & hash;
-            }
-            return hash;
-        }
-
-
 function submit() {
     var pass = document.getElementById("password").value;
     var subpass = document.getElementById("repeatpassword").value;
@@ -38,8 +26,7 @@ function submit() {
     } else {
         return;
     }
-    var passhash = stringToHash(pass);
-    var url = SERVER_DOMAIN + '/createaccount/' + email + '/' + passhash + '/' + gender
+    var url = SERVER_DOMAIN + '/createaccount/' + email + '/' + pass + '/' + gender;
     var response = fetch(url, {method: "POST", mode: "no-cors"});
     document.getElementById("email").classList.remove('is-invalid');
     document.getElementById("repeatemail").classList.remove('is-invalid');
@@ -49,4 +36,5 @@ function submit() {
     document.getElementById("repeatemail").value = "";
     document.getElementById("password").value = "";
     document.getElementById("repeatpassword").value = "";
+    window.open(SERVER_DOMAIN + '/', '_self');
 }
