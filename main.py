@@ -60,12 +60,12 @@ def login_for_access_token(response: Response,form_data: OAuth2PasswordRequestFo
 
 
 @app.get("/", response_class=HTMLResponse)
-def main_page(request: Request):
+def login(request: Request):
     return templates.TemplateResponse("login.html", {"request": request})
 
 
 @app.get("/register", response_class=HTMLResponse)
-def auth(request: Request):
+def register(request: Request):
     return templates.TemplateResponse("register.html", {"request": request})
 
 
