@@ -15,8 +15,6 @@ function submit() {
     var subpass = document.getElementById("repeatpassword").value;
     var email = document.getElementById("email").value;
     var subemail = document.getElementById("repeatemail").value;
-    var gender = document.querySelector('input[name="gender"]:checked').value;
-    console.log(gender);
     if (email.search("@") == -1 || email == "") {
         document.getElementById("email").classList.add('is-invalid');
         return;
@@ -33,6 +31,11 @@ function submit() {
     if (pass != subpass) {
         document.getElementById("password").classList.add('is-invalid');
         document.getElementById("repeatpassword").classList.add('is-invalid');
+        return;
+    }
+    if (document.querySelector('input[name="gender"]:checked') != null) {
+        var gender = document.querySelector('input[name="gender"]:checked').value;
+    } else {
         return;
     }
     var passhash = stringToHash(pass);
