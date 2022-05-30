@@ -1,4 +1,4 @@
-function submit() {
+async function submit() {
     var pass = document.getElementById("password").value;
     var subpass = document.getElementById("repeatpassword").value;
     var email = document.getElementById("email").value;
@@ -27,14 +27,14 @@ function submit() {
         return;
     }
     var url = SERVER_DOMAIN + '/createaccount/' + email + '/' + pass + '/' + gender;
-    var response = fetch(url, {method: "POST", mode: "no-cors"});
-    document.getElementById("email").classList.remove('is-invalid');
-    document.getElementById("repeatemail").classList.remove('is-invalid');
-    document.getElementById("password").classList.remove('is-invalid');
-    document.getElementById("repeatpassword").classList.remove('is-invalid');
-    document.getElementById("email").value = "";
-    document.getElementById("repeatemail").value = "";
-    document.getElementById("password").value = "";
-    document.getElementById("repeatpassword").value = "";
-    window.open(SERVER_DOMAIN + '/', '_self');
+    var response = await fetch(url, {method: "POST", mode: "no-cors"});
+    if (response.status != '201') {
+        if (response.status == '400') {
+            alert('Invalid data');
+        } else if (response.status == '409') {
+            alert('Email already in use');
+        }
+    } else {
+        window.open(SERVER_DOMAIN + '/', '_self');
+    }
 }
