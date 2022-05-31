@@ -12,5 +12,9 @@ async function login() {
             'password': pass
         })
     });
-    console.log(response);
+    if (response.status == '200') {
+        window.open(SERVER_DOMAIN + '/profile', '_self');
+    } else {
+        alert(response.status);
+    }
 }
