@@ -19,3 +19,20 @@ class ApiCreateUser(BaseModel):
     password: str
     gender: str
     name: str
+
+
+class ChangeEmail(BaseModel):
+    new_email: str
+
+
+class ChangeName(BaseModel):
+    new_name: str
+
+
+class ChangeGender(BaseModel):
+    new_gender: str
+
+
+class ChangePassword(BaseModel):
+    old_password: str
+    new_password: str

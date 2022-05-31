@@ -5,8 +5,8 @@ from git.gitfuncs import get_repo_commits, get_repo_contributors, get_user_repo_
 from git.params import Auth_params
 from logic.repo import get_repo_by_name, create_new_repo
 from models.repo import ApiCreateRepo
-from logic.user import create_new_user
-from models.user import ApiCreateUser, User
+from logic.user import create_new_user, change_user_email, change_user_password, change_user_gender, change_user_name
+from models.user import ApiCreateUser, User, ChangeEmail, ChangeName, ChangePassword, ChangeGender
 import json
 from datetime import datetime, timedelta
 from typing import Union
@@ -77,6 +77,26 @@ async def read_users_me(current_user=Depends(get_current_user)):
 @app.get("/profile")
 def get_profile(request: Request, current_user=Depends(get_current_user)):
     return templates.TemplateResponse("profile.html", {"request": request, "email": current_user.email, "name": current_user.name})
+
+
+@app.post("/change_email")
+def change_email(body: ChangeEmail, current_user=Depends(get_current_user)):
+    return change_user_email(email=current_user.email, new_email=body.new_email)
+
+
+@app.post("/change_password")
+def change_password(body: ChangePassword, current_user=Depends(get_current_user)):
+    return change_user_password(email=current_user.email, old_password=body.old_password, new_password=body.new_password)
+
+
+@app.post("/change_gender")
+def change_gender(body: ChangeGender, current_user=Depends(get_current_user)):
+    return change_user_gender(email=current_user.email, new_gender=body.new_gender)
+
+
+@app.post("/change_name")
+def change_name(body: ChangeName, current_user=Depends(get_current_user)):
+    return change_user_name(email=current_user.email, new_name=body.new_name)
 
 
 if __name__ == "__main__":  # Запуск сервера

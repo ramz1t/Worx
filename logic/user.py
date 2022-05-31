@@ -5,22 +5,53 @@ from data.data import Sessions
 from logic.auth import get_password_hash
 
 
-def create_new_user(ApiUser) -> JSONResponse:
+def create_new_user(api_user) -> JSONResponse:
     with Sessions() as session:
-        if not session.query(User).filter_by(email=ApiUser.email).first() is None:
+        if not session.query(User).filter_by(email=api_user.email).first() is None:
             return JSONResponse(status_code=status.HTTP_409_CONFLICT, content='Email already in use')
-        if len(ApiUser.password) < 8 or len(ApiUser.email) < 4:
+        if len(api_user.password) < 8 or len(api_user.email) < 4:
             return JSONResponse(status_code=status.HTTP_400_BAD_REQUEST, content='Invalid data')
-        user = User(email=ApiUser.email, password=get_password_hash(ApiUser.password), gender=ApiUser.gender, name=ApiUser.name)
+        user = User(email=api_user.email, password=get_password_hash(api_user.password), gender=api_user.gender, name=api_user.name)
         session.add(user)
         session.commit()
     return JSONResponse(status_code=status.HTTP_201_CREATED, content='Successfully')
 
 
-def change_user(_id, new_email):
+def change_user_email(email, new_email):
     with Sessions() as session:
-        user = session.query(User).filter_by(id=_id).first()
+        user = session.query(User).filter_by(email=email).first()
         user.email = new_email
+        session.add(user)
+        session.commit()
+        return JSONResponse(status_code=status.HTTP_201_CREATED, content='Successfully')
+
+
+def change_user_name(email, new_name):
+    with Sessions() as session:
+        user = session.query(User).filter_by(email=email).first()
+        user.name = new_name
+        session.add(user)
+        session.commit()
+        return JSONResponse(status_code=status.HTTP_201_CREATED, content='Successfully')
+
+
+def change_user_gender(email, new_gender):
+    with Sessions() as session:
+        user = session.query(User).filter_by(email=email).first()
+        user.gender = new_gender
+        session.add(user)
+        session.commit()
+        return JSONResponse(status_code=status.HTTP_201_CREATED, content='Successfully')
+
+
+def change_user_password(email, old_password, new_password):
+    with Sessions() as session:
+        user = session.query(User).filter_by(email=email).first()
+        if user.password != get_password_hash(old_password):
+            return JSONResponse(status_code=status.HTTP_409_CONFLICT, content='Password missmatch')
+        user.password = new_password
+        session.add(user)
+        session.commit()
         return JSONResponse(status_code=status.HTTP_201_CREATED, content='Successfully')
 
 

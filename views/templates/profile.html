@@ -5,6 +5,7 @@
     {% include 'components/head.html' %}
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script type="text/javascript" src="{{ url_for('static', path='js/settings.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', path='js/user_settings.js') }} "></script>
     <title>Profile</title>
 </head>
 <body>
@@ -23,8 +24,8 @@
 <div class="profile_objects">
     <img class="profile_img" width = "200" src="{{ url_for('static', path='photos/1.png') }}">
     <div class = "profile_text">
-        <h1>{{ name }}</h1>
-        <h3 style="color:grey">{{ email }}</h3>
+        <h1 id="name">{{ name }}</h1>
+        <h3 id="email" style="color:grey">{{ email }}</h3>
     </div>
 </div>
 
@@ -39,18 +40,18 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-               <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="Old_login" placeholder="name@example.com">
-                    <label for="Old_login">Old Login</label>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="New_email" placeholder="name@example.com">
+                    <label for="New_email">New Login</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="New_login" placeholder="name@example.com">
-                    <label for="New_login">New Login</label>
+                    <input type="password" class="form-control" id="password" placeholder="name@example.com">
+                    <label for="password">Password (required for verification)</label>
                 </div>
             </div>
              <div class="modal-footer">
                  <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                 <button type="button" class="btn btn-custom text-white">Ok</button>
+                 <button type="button" class="btn btn-custom text-white" onclick="change_email()">Ok</button>
              </div>
         </div>
     </div>
@@ -60,7 +61,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Change password</h5>
+                <h5 class="modal-title" id="change_password_label">Change password</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
