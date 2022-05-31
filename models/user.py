@@ -11,8 +11,11 @@ class User(Base):
     email = Column(String)
     password = Column(String)
     gender = Column(String)
+    name = Column(String)
+
 
 class ApiCreateUser(BaseModel):
     email: str
     password: str
     gender: str
+    name = str
