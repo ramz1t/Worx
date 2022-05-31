@@ -36,9 +36,9 @@ def add_repo(reponame, owner_username):
     return response
 
 
-@app.post('/createaccount/{login}/{passhash}/{gender}')
-def create_account(login, passhash, gender):
-    user = ApiCreateUser(email=login, password=passhash, gender=gender)
+@app.post('/createaccount/{login}/{passhash}/{gender}/{name}')
+def create_account(login, passhash, gender, name):
+    user = ApiCreateUser(email=login, password=passhash, gender=gender, name=name)
     response = create_new_user(user)
     return response
 
@@ -76,7 +76,7 @@ async def read_users_me(current_user=Depends(get_current_user)):
 
 @app.get("/profile")
 def get_profile(request: Request, current_user=Depends(get_current_user)):
-    return templates.TemplateResponse("profile.html", {"request": request, "email": current_user.email})
+    return templates.TemplateResponse("profile.html", {"request": request, "email": current_user.email, "name": current_user.name})
 
 
 if __name__ == "__main__":  # Запуск сервера
