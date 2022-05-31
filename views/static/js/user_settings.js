@@ -13,7 +13,7 @@ async function change_email() {
     });
 
     if (response.status == '201') {
-        response = await fetch('http://127.0.0.1:8000/token', {
+        response = await fetch(SERVER_DOMAIN + '/token', {
                             method: 'POST',
                             headers: {
                                 'accept': 'application/json'
