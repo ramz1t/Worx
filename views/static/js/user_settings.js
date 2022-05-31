@@ -30,16 +30,18 @@ async function change_email() {
 }
 
 async function change_name() {
-    var new_name = document.getElementById("New_email").value;
-    var response = await fetch(SERVER_DOMAIN + '/change_email', {
+    var new_name = document.getElementById("New_name").value;
+    var response = await fetch(SERVER_DOMAIN + '/change_name', {
         method: 'POST',
         headers: {
-            'accept': 'application/json'
+            'accept': 'application/json',
+            'Content-Type': 'application/json'
         },
-        body: new URLSearchParams({
-            "new_name": new_name
+        body: JSON.stringify({
+            'new_name': new_name
         })
     });
+    window.open(SERVER_DOMAIN + '/profile', '_self');
 }
 
 async function change_gender() {

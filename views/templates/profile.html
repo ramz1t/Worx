@@ -10,29 +10,30 @@
 </head>
 <body>
 
-<div class = "nav">{% include 'components/navbar.html' %}</div>
+<div class="nav">{% include 'components/navbar.html' %}</div>
 <br>
 <br>
 <ul class="profile-list-group">
-  <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#Change_login">Change login</li>
-  <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#Change_password">Change password</li>
-  <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#Change_photo">Choose profile picture</li>
-  <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#Change_gender">Choose gender</li>
-  <li class="list-group-item text-danger"><a class="profile_logout" href="/">Log Out </a></li>
+    <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#Change_login">Change login</li>
+    <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#Change_name">Change name</li>
+    <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#Change_password">Change password</li>
+    <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#Change_photo">Change profile picture</li>
+    <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#Change_gender">Change gender</li>
+    <li class="list-group-item text-danger"><a class="profile_logout" href="/">Log Out </a></li>
 </ul>
 
 <div class="profile_objects">
-    <img class="profile_img" width = "200" src="{{ url_for('static', path='photos/1.png') }}">
-    <div class = "profile_text">
+    <img class="profile_img" width="200" src="{{ url_for('static', path='photos/1.png') }}">
+    <div class="profile_text">
         <h1 id="name">{{ name }}</h1>
         <h3 id="email" style="color:grey">{{ email }}</h3>
     </div>
 </div>
 
 
-
 <!-- login -->
- <div class="modal fade" id="Change_login" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="Change_login" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -49,15 +50,40 @@
                     <label for="password">Password (required for verification)</label>
                 </div>
             </div>
-             <div class="modal-footer">
-                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                 <button type="button" class="btn btn-custom text-white" onclick="change_email()">Ok</button>
-             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-custom text-white" onclick="change_email()">Ok</button>
+            </div>
         </div>
     </div>
 </div>
+
+<!-- name -->
+<div class="modal fade" id="Change_name" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Change_name_popup">Change name</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="New_name" placeholder="name@example.com">
+                    <label for="New_name">New name</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-custom text-white" onclick="change_name()">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Password -->
- <div class="modal fade" id="Change_password" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="Change_password" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -65,7 +91,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-               <div class="form-floating mb-3">
+                <div class="form-floating mb-3">
                     <input type="email" class="form-control" id="Old_pass" placeholder="name@example.com">
                     <label for="Old_pass">Old password</label>
                 </div>
@@ -78,16 +104,17 @@
                     <label for="Repeat_new_pass">Repeat new password</label>
                 </div>
             </div>
-             <div class="modal-footer">
-                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                 <button type="button" class="btn btn-custom text-white">Ok</button>
-             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-custom text-white">Ok</button>
+            </div>
         </div>
     </div>
 </div>
 
 <!-- Gender-->
-<div class="modal fade" id="Change_gender" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="Change_gender" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -95,41 +122,42 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-                <div class="card" style="width: 18rem;">
-                      <img src="{{ url_for('static', path='photos/male.png') }}" class="card-img-top" alt="...">
-                      <div class="card-body">
-                        <p class="card-text">
-                            <div class="form-check">
-                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                              <label class="form-check-label" for="flexRadioDefault1">
-                                Male
-                              </label>
-                            </div>
-                          </p>
-                      </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                      <img src="{{ url_for('static', path='photos/female.png') }}" class="card-img-top" alt="...">
-                      <div class="card-body">
-                        <p class="card-text">
-                            <div class="form-check">
-                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                              <label class="form-check-label" for="flexRadioDefault1">
-                                Female
-                              </label>
-                            </div>
-                          </p>
-                      </div>
+            <div class="card" style="width: 18rem;">
+                <img src="{{ url_for('static', path='photos/male.png') }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Male
+                        </label>
                     </div>
+                    </p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="{{ url_for('static', path='photos/female.png') }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Female
+                        </label>
+                    </div>
+                    </p>
+                </div>
+            </div>
             <div class="modal-footer">
-                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                     <button type="button" class="btn btn-custom text-white">Ok</button>
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-custom text-white">Ok</button>
             </div>
         </div>
     </div>
 </div>
-    <!-- Photo -->
- <div class="modal fade" id="Change_photo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<!-- Photo -->
+<div class="modal fade" id="Change_photo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -137,13 +165,13 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <div class="input-group mb-3">
-                  <label class="input-group-text" for="inputGroupFile01">Upload</label>
-                  <input type="file" class="form-control" id="inputGroupFile01">
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupFile01">Upload</label>
+                    <input type="file" class="form-control" id="inputGroupFile01">
                 </div>
+            </div>
         </div>
     </div>
-</div>
 
 </body>
 </html>
