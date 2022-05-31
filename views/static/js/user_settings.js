@@ -74,11 +74,13 @@ async function change_password() {
     var response = await fetch(SERVER_DOMAIN + '/change_password', {
         method: 'POST',
         headers: {
-            'accept': 'application/json'
+            'accept': 'application/json',
+            'Content-Type': 'application/json'
         },
-        body: new URLSearchParams({
-            "new_password": new_pass,
-            "old_password": old_pass
+        body: JSON.stringify({
+            'new_password': new_pass,
+            'old_password': old_pass
         })
     });
+    window.open(SERVER_DOMAIN + '/profile', '_self');
 }

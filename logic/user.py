@@ -2,7 +2,7 @@ from fastapi.responses import JSONResponse
 from fastapi import status
 from models.user import User, ApiCreateUser
 from data.data import Sessions
-from logic.auth import get_password_hash
+from logic.auth import get_password_hash, verify_password
 
 
 def create_new_user(api_user) -> JSONResponse:
@@ -47,9 +47,9 @@ def change_user_gender(email, new_gender):
 def change_user_password(email, old_password, new_password):
     with Sessions() as session:
         user = session.query(User).filter_by(email=email).first()
-        if user.password != get_password_hash(old_password):
+        if not verify_password(plain_password=old_password, hashed_password=user.password):
             return JSONResponse(status_code=status.HTTP_409_CONFLICT, content='Password missmatch')
-        user.password = new_password
+        user.password = get_password_hash(new_password)
         session.add(user)
         session.commit()
         return JSONResponse(status_code=status.HTTP_201_CREATED, content='Successfully')
