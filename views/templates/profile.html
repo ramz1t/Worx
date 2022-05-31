@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="photos/worx.ico">
-    <div class = "head"></div>
+    <link rel="icon" href=" {{ url_for('static', path='photos/favicon.ico') }}">
+    {% include 'components/head.html' %}
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script type="text/javascript" src="settings.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', path='js/settings.js') }}"></script>
     <title>Profile</title>
 </head>
 <body>
 
-<div class = "nav"></div>
+<div class = "nav">{% include 'components/navbar.html' %}</div>
 <br>
 <br>
 <ul class="profile-list-group">
@@ -17,16 +17,16 @@
   <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#Change_password">Change password</li>
   <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#Change_photo">Choose profile picture</li>
   <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#Change_gender">Choose gender</li>
-  <li class="list-group-item text-danger" href="auth.html"><a class="profile_logout" href="auth.html">Log Out </a></li>
+  <li class="list-group-item text-danger"><a class="profile_logout" href="/">Log Out </a></li>
 </ul>
 
-    <div class="profile_objects">
-        <img class="profile_img" width = "200" src="photos/1.png">
-        <div class = "profile_text">
-            <h1>Username</h1>
-            <h3 style="color:grey">Email</h3>
-        </div>
+<div class="profile_objects">
+    <img class="profile_img" width = "200" src="{{ url_for('static', path='photos/1.png') }}">
+    <div class = "profile_text">
+        <h1>Email</h1>
+        <h3 style="color:grey">{{ email }}</h3>
     </div>
+</div>
 
 
 
@@ -95,7 +95,7 @@
             </div>
 
                 <div class="card" style="width: 18rem;">
-                      <img src="/photos/male.png" class="card-img-top" alt="...">
+                      <img src="{{ url_for('static', path='photos/male.png') }}" class="card-img-top" alt="...">
                       <div class="card-body">
                         <p class="card-text">
                             <div class="form-check">
@@ -108,7 +108,7 @@
                       </div>
                 </div>
                 <div class="card" style="width: 18rem;">
-                      <img src="/photos/female.png" class="card-img-top" alt="...">
+                      <img src="{{ url_for('static', path='photos/female.png') }}" class="card-img-top" alt="...">
                       <div class="card-body">
                         <p class="card-text">
                             <div class="form-check">
@@ -126,7 +126,7 @@
             </div>
         </div>
     </div>
-    </div>
+</div>
     <!-- Photo -->
  <div class="modal fade" id="Change_photo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -147,14 +147,14 @@
 </body>
 </html>
 
-<script type="text/javascript">
-    $(function () {
-        $(".nav").load("components/navbar.html");
-    });
-</script>
+<!--<script type="text/javascript">-->
+<!--    $(function () {-->
+<!--        $(".nav").load("views/templates/components/navbar.html");-->
+<!--    });-->
+<!--</script>-->
 
-<script type="text/javascript">
-    $(function () {
-        $(".head").load("components/head.html");
-    });
-</script>
+<!--<script type="text/javascript">-->
+<!--    $(function () {-->
+<!--        $(".head").load("views/templates/components/head.html");-->
+<!--    });-->
+<!--</script>-->

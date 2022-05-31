@@ -75,8 +75,9 @@ async def read_users_me(current_user=Depends(get_current_user)):
 
 
 @app.get("/profile")
-def get_profile(current_user=Depends(get_current_user)):
-    return current_user.email
+def get_profile(request: Request, current_user=Depends(get_current_user)):
+    return templates.TemplateResponse("profile.html", {"request": request, "email": current_user.email})
+
 
 if __name__ == "__main__":  # Запуск сервера
     uvicorn.run(app, host="127.0.0.1", port=8000)

@@ -2,8 +2,8 @@
 <nav class="navbar navbar-expand-xxl bg-light ">
     <div class="container-fluid">
         <div class="container">
-            <a class="nav_logo" href="mainpage.html">
-              <img src="photos/worx.png" alt="" class="nav_logo">
+            <a class="nav_logo" href="">
+              <img src="{{ url_for('static', path='photos/worx.png') }}" alt="" class="nav_logo">
             </a>
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -40,7 +40,7 @@
                         <a class="nav-link active" aria-current="page" href="stats.html">Show stats</a>
                     </li>
                 </ul>
-                <a class="photo_position" href="profile.html"><img class='navphoto' src='photos/1.png'></a>
+                <a class="photo_position" href="/profile"><img class='navphoto' src="{{ url_for('static', path='photos/1.png') }}"></a>
             </ul>
         </div>
     </div>
@@ -95,9 +95,9 @@
       crossorigin="anonymous">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', path='style/style.css') }}">
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script rel="text/javascript" src="settings.js"></script>
-<script rel="text/javascript" src="../js/add_repo.js"></script>
+<script rel="text/javascript" src="{{ url_for('static', path='js/settings.js') }}"></script>
+<script rel="text/javascript" src="{{ url_for('static', path='js/add_repo.js') }}"></script>
