@@ -1,5 +1,9 @@
 async function change_email() {
     var new_email = document.getElementById("New_email").value;
+    if (new_email.search("@") == -1 || new_email == "") {
+        document.getElementById("New_email").classList.add('is-invalid');
+        return;
+    }
     var password = document.getElementById("password").value;
     var response = await fetch(SERVER_DOMAIN + '/change_email', {
         method: 'POST',
