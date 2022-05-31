@@ -45,16 +45,22 @@ async function change_name() {
 }
 
 async function change_gender() {
-    var new_gender = document.getElementById("New_email").value;
+    if (document.querySelector('input[name="gender"]:checked') != null) {
+        var new_gender = document.querySelector('input[name="gender"]:checked').value;
+    } else {
+        return;
+    }
     var response = await fetch(SERVER_DOMAIN + '/change_gender', {
         method: 'POST',
         headers: {
-            'accept': 'application/json'
+            'accept': 'application/json',
+            'Content-Type': 'application/json'
         },
-        body: new URLSearchParams({
-            "new_gender": new_gender
+        body: JSON.stringify({
+            'new_gender': new_gender
         })
     });
+    window.open(SERVER_DOMAIN + '/profile', '_self');
 }
 
 async function change_password() {

@@ -116,32 +116,32 @@
 <div class="modal fade" id="Change_gender" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content gender-menu">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Change password</h5>
+                <h5 class="modal-title" id="">Change gender</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <div class="card" style="width: 18rem;">
+            <div class="card gendercard" style="width: 18rem;">
                 <img src="{{ url_for('static', path='photos/male.png') }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
+                        <input value="male" class="form-check-input" type="radio" name="gender" id="malegender">
+                        <label class="form-check-label" for="malegender">
                             Male
                         </label>
                     </div>
                     </p>
                 </div>
             </div>
-            <div class="card" style="width: 18rem;">
+            <div class="card gendercard" style="width: 18rem;">
                 <img src="{{ url_for('static', path='photos/female.png') }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
+                        <input value="female" class="form-check-input" type="radio" name="gender" id="femalegender">
+                        <label class="form-check-label" for="femalegender">
                             Female
                         </label>
                     </div>
@@ -150,7 +150,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-custom text-white">Ok</button>
+                <button type="button" class="btn btn-custom text-white" onclick="change_gender()">Ok</button>
             </div>
         </div>
     </div>

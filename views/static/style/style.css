@@ -70,7 +70,13 @@ body {
     height:15px;
 }
 
+.gender-menu{
+    overflow-y: hidden; !important
+}
 
+.gender-card{
+    float: left;
+}
 
 /* Stats */
 
