@@ -1,5 +1,6 @@
 async function change_email() {
     var new_email = document.getElementById("New_email").value;
+    var password = document.getElementById("password").value;
     var response = await fetch(SERVER_DOMAIN + '/change_email', {
         method: 'POST',
         headers: {
@@ -10,9 +11,21 @@ async function change_email() {
             'new_email': new_email
         })
     });
-    console.log(response);
+
     if (response.status == '201') {
-        document.getElementById("email").text = new_email;
+        response = await fetch('http://127.0.0.1:8000/token', {
+                            method: 'POST',
+                            headers: {
+                                'accept': 'application/json'
+                            },
+                            body: new URLSearchParams({
+                                'username': new_email,
+                                'password': password
+                            })
+                        });
+        window.open(SERVER_DOMAIN + '/profile', '_self');
+    } else {
+        alert('Wrong credentials');
     }
 }
 

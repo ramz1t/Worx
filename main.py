@@ -69,11 +69,6 @@ def register(request: Request):
     return templates.TemplateResponse("register.html", {"request": request})
 
 
-@app.get("/users/me/")
-async def read_users_me(current_user=Depends(get_current_user)):
-    return current_user
-
-
 @app.get("/profile")
 def get_profile(request: Request, current_user=Depends(get_current_user)):
     return templates.TemplateResponse("profile.html", {"request": request, "email": current_user.email, "name": current_user.name})
