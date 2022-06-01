@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;500&family=Roboto&display=swap');
+
+body {
+    background-image: url("../photos/bg.png");
+}
+
+.profile_objects {
+    text-align: center;
+    left: 50%;
+}
+.profile_text {
+    text-align: center;
+    padding-top: 40px;
+}
+
+.btn-custom{
+    background-color: #4527a0 !important
+}
+.profile_img{
+    border-radius: 50%;
+}
+
+.profile_logout{
+    text-decoration: none;
+    color: red;
+}
+
+.profile-list-group{
+    position:absolute;
+    padding-top: 6%;
+    padding-left:5%;
+    border-radius:15px;
+}
+
+.gender{
+    height:15px;
+}
+
+.gendercard{
+    margin: 20px !important;
+}
+
+.gender-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

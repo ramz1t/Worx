@@ -3,8 +3,10 @@
 <head>
     {% include 'components/head.html' %}
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script type="text/javascript" src="{{ url_for('static', path='js/user_settings.js') }} "></script>
     <title>Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='style/profile.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', path='js/user_settings.js') }} "></script>
+    {% include 'components/bootstrap.html' %}
 </head>
 <body>
 
@@ -15,7 +17,7 @@
     <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#Change_email">Change email</li>
     <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#Change_name">Change name</li>
     <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#Change_password">Change password</li>
-<!--    <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#Change_photo">Change profile picture</li>-->
+    <!--    <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#Change_photo">Change profile picture</li>-->
     <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#Change_gender">Change gender</li>
     <li class="list-group-item text-danger"><a class="profile_logout" href="/">Log Out </a></li>
 </ul>
@@ -130,33 +132,33 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="gender-container">
-                    <div class="card gendercard" style="width: 12rem;">
-                        <img src="{{ url_for('static', path='photos/male.png') }}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">
-                            <div class="form-check">
-                                <input value="male" class="form-check-input" type="radio" name="gender" id="malegender">
-                                <label class="form-check-label" for="malegender">
-                                    Male
-                                </label>
-                            </div>
-                            </p>
+                <div class="card gendercard" style="width: 12rem;">
+                    <img src="{{ url_for('static', path='photos/male.png') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">
+                        <div class="form-check">
+                            <input value="male" class="form-check-input" type="radio" name="gender" id="malegender">
+                            <label class="form-check-label" for="malegender">
+                                Male
+                            </label>
                         </div>
+                        </p>
                     </div>
-                    <div class="card gendercard" style="width: 12rem;">
-                        <img src="{{ url_for('static', path='photos/female.png') }}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">
-                            <div class="form-check">
-                                <input value="female" class="form-check-input" type="radio" name="gender"
-                                       id="femalegender">
-                                <label class="form-check-label" for="femalegender">
-                                    Female
-                                </label>
-                            </div>
-                            </p>
+                </div>
+                <div class="card gendercard" style="width: 12rem;">
+                    <img src="{{ url_for('static', path='photos/female.png') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">
+                        <div class="form-check">
+                            <input value="female" class="form-check-input" type="radio" name="gender"
+                                   id="femalegender">
+                            <label class="form-check-label" for="femalegender">
+                                Female
+                            </label>
                         </div>
+                        </p>
                     </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>

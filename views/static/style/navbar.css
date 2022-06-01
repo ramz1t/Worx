@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;500&family=Roboto&display=swap');
+
+body {
+    background-image: url("../photos/bg.png");
+}
+
+.navphoto {
+    border-radius: 50%;
+}
+.nav-link {
+    color: #4527a0 !important;
+}
+
+.navphoto {
+    height: 45px;
+    width: 45px;
+}
+
+.navbar{
+    width:100%;
+}
+
+.photo_position {
+    padding-right: 20px;
+    position: absolute;
+    right: 0;
+    height = 50px;
+    width = 50px;
+    border = none;
+    border-radius: 50%;
+}
+
+.nav_logo{
+    height:45px;
+}
+.container{
+    padding-right: 50px;
+    width:45px;
+}
+
+.error-custom{
+    background-color: red !important
+}

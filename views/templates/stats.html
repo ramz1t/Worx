@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     {% include 'components/head.html' %}
+    {% include 'components/bootstrap.html' %}
+    <title>Statistic</title>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <title>Statistic</title>
 
 </head>
 <body>
@@ -13,7 +14,7 @@
     <br>
     <div class="cards">
         <div class="card shadow-lg card-bg-custom" style="width: 18rem;">
-            <img src="photos/prodday.png" class="card-img" alt="...">
+            <img src="{{ url_for('static', path='photos/prodday.png') }}" class="card-img" alt="...">
           <div class="card-body card-bg-custom">
             <p class="card-text fw-bold fs-5 text-center">Most productive day</p>
             <p class="card-text fw-bold fs-3 text-center">Monday</p>
@@ -22,7 +23,7 @@
         </div>
 
         <div class="card card-bg-custom shadow-lg" style="width: 18rem;">
-            <img src="photos/unprodday.png" class="card-img-horizontal" alt="...">
+            <img src="{{ url_for('static', path='photos/unprodday.png') }}" class="card-img-horizontal" alt="...">
           <div class="card-body card-bg-custom">
             <p class="card-text fw-bold fs-5 text-center ">Most unproductive day</p>
             <p class="card-text fw-bold fs-3 text-center">Friday</p>
@@ -30,7 +31,7 @@
           </div>
         </div>
         <div class="card shadow-lg card-bg-custom" style="width: 18rem;">
-            <img src="photos/commited.png" class="card-img" alt="...">
+            <img src="{{ url_for('static', path='photos/commited.png') }}" class="card-img" alt="...">
           <div class="card-body card-bg-custom">
             <p class="card-text fw-bold fs-5 text-center">Lines per commit</p>
             <p class="card-text fw-bold fs-3 text-center">~50</p>
@@ -39,7 +40,7 @@
         </div>
 
         <div class="card card-bg-custom shadow-lg" style="width: 18rem;">
-            <img src="photos/added.png" class="card-img-horizontal" alt="...">
+            <img src="{{ url_for('static', path='photos/added.png') }}" class="card-img-horizontal" alt="...">
           <div class="card-body card-bg-custom">
             <p class="card-text fw-bold fs-5 text-center ">Lindes added</p>
             <p class="card-text fw-bold fs-3 text-center">+73</p>
@@ -84,14 +85,4 @@ const myChart = new Chart(ctx, {
         }
     }
 });
-</script>
-<script type="text/javascript">
-    $(function () {
-        $(".nav").load("components/navbar.html");
-    });
-</script>
-<script type="text/javascript">
-    $(function () {
-        $(".head").load("components/head.html");
-    });
 </script>

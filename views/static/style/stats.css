@@ -1,0 +1,23 @@
+.cards{
+    color: white !important;
+    width: 92%;
+    margin: 0 auto;
+}
+
+.card{
+    border-radius: 15px !important;
+    float:left;
+    margin: 75px;
+    border-color: #4527a0 !important;
+}
+.graph1{
+    padding-left:0px;
+    padding-right:15px;
+}
+.card-body{
+    border-radius: 15px !important;
+}
+
+.card-bg-custom{
+    color: #292929;
+}
