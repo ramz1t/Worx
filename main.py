@@ -30,6 +30,9 @@ app.mount("/static", StaticFiles(directory="views/static"), name="static")
 templates = Jinja2Templates(directory="views/templates")
 
 
+'''urls to add smth'''
+
+
 @app.post('/addrepo/{reponame}/{owner_username}')
 def add_repo(reponame, owner_username):
     repo = ApiCreateRepo(name=reponame, owner_username=owner_username)
@@ -60,6 +63,9 @@ def login_for_access_token(response: Response,form_data: OAuth2PasswordRequestFo
     return {"access_token": access_token, "token_type": "bearer"}
 
 
+'''urls to get pages'''
+
+
 @app.get("/", response_class=HTMLResponse)
 def login(request: Request):
     return templates.TemplateResponse("login.html", {"request": request})
@@ -76,6 +82,15 @@ def get_profile(request: Request, current_user=Depends(get_current_user)):
                                                        "email": current_user.email,
                                                        "name": current_user.name,
                                                        "gender": current_user.gender})
+
+
+@app.get("/main")
+def get_main_page(request: Request, current_user=Depends(get_current_user)):
+    return templates.TemplateResponse("mainpage.html", {"request": request,
+                                                        "gender": current_user.gender})
+
+
+'''urls to edit smth'''
 
 
 @app.post("/change_email")

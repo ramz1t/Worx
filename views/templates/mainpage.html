@@ -1,29 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <div class = "head"></div>
+    {% include 'components/head.html' %}
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <title>WorX</title>
-    <link rel="icon" href="photos/worx.ico">
+    <link rel="icon" href="{{ url_for('static', path='photos/worx.ico') }}">
 
 </head>
 <body>
-<div class = "nav"></div>
+<div class="nav">{% include 'components/navbar.html' %}</div>
 <div class="mainpage_text">
     <p class="text-center fs-1 fw-bold ">WorX</p>
-    <p class="text-center fs-1 fw-bold ">We, pupils of MSHP, made this project to made teacher's work easier</p>
+    <p class="text-center fs-1 fw-bold ">We, pupils of MSHP, made this project to made teacher's work easier. This is a
+    tool which allows to track team progress!</p>
 </div>
 
 
 </body>
 </html>
-<script type="text/javascript">
-    $(function () {
-        $(".nav").load("components/navbar.html");
-    });
-</script>
-<script type="text/javascript">
-    $(function () {
-        $(".head").load("components/head.html");
-    });
-</script>
