@@ -23,7 +23,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
 from func.helpers import get_repo_users_count, get_most_effective_user, get_least_effective_user, \
-    get_repo_commits_count, get_user_repo_commits, get_repo_branches_count
+    get_repo_commits_count, get_user_repo_commits, get_repo_branches_count, get_commits_leaderboard
 import requests
 from data.data import SERVER_DOMAIN
 from git.params import Auth_params
@@ -106,6 +106,8 @@ def get_stats(reponame: str, user: str, request: Request, current_user=Depends(g
     user_repo_commits = get_user_repo_commits(commits, user)
     branches = get_repo_branches(auth_params=Auth_params, repo_name=reponame, username=db_repo.owner_username)
     repo_branches = get_repo_branches_count(branches)
+    print(commits[0])
+    commit_leaderboard = get_commits_leaderboard(commits)
     return templates.TemplateResponse("stats.html", {"request": request,
                                                      "gender": current_user.gender,
                                                      "repo_contributors_count": repo_contributors_count,
@@ -113,7 +115,8 @@ def get_stats(reponame: str, user: str, request: Request, current_user=Depends(g
                                                      "least_effective_user": least_effective_user,
                                                      "repo_commits_count": commits_count,
                                                      "user_repo_commits": user_repo_commits,
-                                                     "repo_branches": repo_branches})
+                                                     "repo_branches": repo_branches,
+                                                     "commit_leaderboard": commit_leaderboard})
 
 
 '''urls to edit smth'''

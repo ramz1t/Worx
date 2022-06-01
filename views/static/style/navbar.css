@@ -39,11 +39,54 @@
     background-color: red !important
 }
 
-.btn-custom{
-    background-color:#4527A0 !important;
+.btn-add {
+  border: 2px solid black;
+  background-color: white;
+  color: black;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-purple {
+  border-color: #4527a0 !important;
+  color: #4527a0 !important;
+}
+
+.btn-purple:hover {
+  background-color: #4527a0;
+  color: white;
 }
 
 .inputerror {
  visibility: hidden;
  padding-right: 45%;
+}
+
+.cards{
+    color: white !important;
+    width: 92%;
+    margin: 0 auto;
+}
+
+.card{
+    border-radius: 15px !important;
+    float:left;
+    margin: 75px;
+    border-color: #4527a0 !important;
+}
+.graph1{
+    padding-left:0px;
+    padding-right:15px;
+}
+.card-body{
+    border-radius: 15px !important;
+}
+
+.card-bg-custom{
+    color: #292929;
+}
+
+.users-commits {
+    width: 50%;
 }

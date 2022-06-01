@@ -81,3 +81,20 @@ def get_repo_issues_count(data):
 
 def get_repo_branches_count(data):
     return len(data)
+
+
+def get_commits_leaderboard(data):
+    result = []
+    users = {}
+    for commit in data:
+        name = commit['commit']['author']['name']
+        if name not in users:
+            users[name] = 0
+        users[name] += 1
+    k = 1
+    sorted_names = sorted(users, reverse=True)
+    for user in sorted_names:
+        result.append(dict({'id': k, 'name': user, 'count': users.get(user)}))
+        k += 1
+    print(result)
+    return result
