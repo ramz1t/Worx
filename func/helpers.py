@@ -24,10 +24,30 @@ def get_most_productive_day(data):
 
 
 def get_most_effective_user(data):
-    pass
+    users = {}
+    for commit in data:
+        name = commit['commit']['author']['name']
+        if name not in users:
+            users[name] = 1
+        else:
+            users[name] += 1
+    most_effective_user = max(users)
+    return most_effective_user
 
 
-def get_least_produstive_day(data):
+def get_least_effective_user(data):
+    users = {}
+    for commit in data:
+        name = commit['commit']['author']['name']
+        if name not in users:
+            users[name] = 1
+        else:
+            users[name] += 1
+    least_effective_user = min(users)
+    return least_effective_user
+
+
+def get_least_productive_day(data):
     pass
 
 
@@ -39,5 +59,17 @@ def get_added_lines(data):
     pass
 
 
+def get_repo_commits_count(data):
+    return len(data)
+
+
 def get_repo_users_count(data):
     return len(data)
+
+
+def get_user_repo_commits(data, username):
+    k = 0
+    for commit in data:
+        if commit['commit']['author']['name'] == username:
+            k += 1
+    return k

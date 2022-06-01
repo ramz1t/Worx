@@ -12,6 +12,10 @@
     <div class = "nav">{% include 'components/navbar.html' %}</div>
     <br>
     <br>
+    <p>most effective user -   {{ most_effective_user }}</p>
+    <p>least effective user -   {{ least_effective_user }}</p>
+    <p>commits count - {{ repo_commits_count }}</p>
+    <p>commits from selected user - {{ user_repo_commits }}</p>
     <div class="cards">
         <div class="card shadow-lg card-bg-custom" style="width: 18rem;">
             <img src="{{ url_for('static', path='photos/prodday.png') }}" class="card-img" alt="...">
@@ -61,7 +65,7 @@ const myChart = new Chart(ctx, {
         labels: ['December', 'January', 'February', 'March', 'April', 'May', 'June'],
         datasets: [{
             label: 'How many commits',
-            data: [12, 19, 3, 5, 2, 3, 2],
+            data: [12, 19, 13, 5, 2, 3, 2],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',

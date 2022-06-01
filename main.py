@@ -22,7 +22,8 @@ from logic.auth import authenticate_user, ACCESS_TOKEN_EXPIRE_MINUTES, create_ac
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
-from func.helpers import get_repo_users_count
+from func.helpers import get_repo_users_count, get_most_effective_user, get_least_effective_user, \
+    get_repo_commits_count, get_user_repo_commits
 import requests
 from data.data import SERVER_DOMAIN
 from git.params import Auth_params
@@ -93,14 +94,23 @@ def get_main_page(request: Request, current_user=Depends(get_current_user)):
                                                         "gender": current_user.gender})
 
 
-@app.post("/stats")
-def get_stats(repo: RepoInfo, request: Request, current_user=Depends(get_current_user)):
-    db_repo = get_repo_by_name(repo_name=repo.name)
-    contributors_list = get_repo_contributors(auth_params=Auth_params, repo_name=repo.name, users_name=db_repo.owner_username)
+@app.get("/stats/{reponame}/{user}")
+def get_stats(reponame: str, user: str, request: Request, current_user=Depends(get_current_user)):
+    db_repo = get_repo_by_name(repo_name=reponame)
+    contributors_list = get_repo_contributors(auth_params=Auth_params, repo_name=reponame, users_name=db_repo.owner_username)
+    commits = get_repo_commits(auth_params=Auth_params, repo_name=reponame, username=db_repo.owner_username)
     repo_contributors_count = get_repo_users_count(contributors_list)
+    most_effective_user = get_most_effective_user(commits)
+    least_effective_user = get_least_effective_user(commits)
+    commits_count = get_repo_commits_count(commits)
+    user_repo_commits = get_user_repo_commits(commits, user)
     return templates.TemplateResponse("stats.html", {"request": request,
                                                      "gender": current_user.gender,
-                                                     "repo_contributors_count": repo_contributors_count})
+                                                     "repo_contributors_count": repo_contributors_count,
+                                                     "most_effective_user": most_effective_user,
+                                                     "least_effective_user": least_effective_user,
+                                                     "repo_commits_count": commits_count,
+                                                     "user_repo_commits": user_repo_commits})
 
 
 '''urls to edit smth'''

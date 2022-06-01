@@ -9,17 +9,5 @@ async function get_stats() {
     } else {
         return;
     }
-    console.log(reponame, username);
-    fetch(SERVER_DOMAIN + '/stats', {
-        method: 'POST',
-        headers: {
-            'accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            'name': reponame,
-            'username': username
-        })
-    });
-    window.open()
+    window.open(SERVER_DOMAIN + '/stats/' + reponame + '/' + username, '_self')
 }

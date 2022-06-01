@@ -1,4 +1,4 @@
-GITHUB_TOKEN = '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'
+GITHUB_TOKEN = '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'
 username = 'githubgithabovich'
 
 Auth_params = {

@@ -34,10 +34,10 @@ def get_repo_branches(auth_params, repo_name, sha=''):
     return branches
 
 
-def get_repo_commits(auth_params, repo_name, sha="", info=False):
+def get_repo_commits(auth_params, repo_name, username, sha="", info=False):
     if sha != "":
         sha = "/" + str(sha)
-    commits = requests.get(urls['commits_url'].format(auth_params['username'], repo_name, sha),
+    commits = requests.get(urls['commits_url'].format(username, repo_name, sha),
                            auth=tuple(auth_params.values())).json()
     if info:
         commitinfo = []
