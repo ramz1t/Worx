@@ -23,7 +23,11 @@
 </ul>
 
 <div class="profile_objects">
-    <img class="profile_img" width="200" src="{{ url_for('static', path='photos/1.png') }}">
+    {% if gender == "male" %}
+    <img class="profile_img" width = "200" src="{{ url_for('static', path='photos/male.png') }}">
+    {% else %}
+    <img class="profile_img" width = "200" src="{{ url_for('static', path='photos/female.png') }}">
+    {% endif %}
     <div class="profile_text">
         <h1 id="name">{{ name }}</h1>
         <h3 id="email" style="color:grey">{{ email }}</h3>
@@ -51,7 +55,9 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" onclick="clear_email()">Close</button>
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" onclick="clear_email()">
+                    Close
+                </button>
                 <button type="button" class="btn btn-custom text-white" onclick="change_email()">Ok</button>
             </div>
         </div>
@@ -74,7 +80,9 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" onclick="clear_name()">Close</button>
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" onclick="clear_name()">
+                    Close
+                </button>
                 <button type="button" class="btn btn-custom text-white" onclick="change_name()">Ok</button>
             </div>
         </div>
@@ -105,7 +113,9 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" onclick="clear_password()">Close</button>
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                        onclick="clear_password()">Close
+                </button>
                 <button type="button" class="btn btn-custom text-white" onclick="change_password()">Ok</button>
             </div>
         </div>

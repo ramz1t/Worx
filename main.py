@@ -72,7 +72,10 @@ def register(request: Request):
 
 @app.get("/profile")
 def get_profile(request: Request, current_user=Depends(get_current_user)):
-    return templates.TemplateResponse("profile.html", {"request": request, "email": current_user.email, "name": current_user.name})
+    return templates.TemplateResponse("profile.html", {"request": request,
+                                                       "email": current_user.email,
+                                                       "name": current_user.name,
+                                                       "gender": current_user.gender})
 
 
 @app.post("/change_email")
