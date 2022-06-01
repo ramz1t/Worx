@@ -70,12 +70,14 @@ body {
     height:15px;
 }
 
-.gender-menu{
-    overflow-y: hidden; !important
+.gendercard{
+    margin: 20px !important;
 }
 
-.gender-card{
-    float: left;
+.gender-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Stats */

@@ -24,9 +24,9 @@
 
 <div class="profile_objects">
     {% if gender == "male" %}
-    <img class="profile_img" width = "200" src="{{ url_for('static', path='photos/male.png') }}">
+    <img class="profile_img" width="200" src="{{ url_for('static', path='photos/male.png') }}">
     {% else %}
-    <img class="profile_img" width = "200" src="{{ url_for('static', path='photos/female.png') }}">
+    <img class="profile_img" width="200" src="{{ url_for('static', path='photos/female.png') }}">
     {% endif %}
     <div class="profile_text">
         <h1 id="name">{{ name }}</h1>
@@ -131,32 +131,34 @@
                 <h5 class="modal-title" id="">Change gender</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-
-            <div class="card gendercard" style="width: 18rem;">
-                <img src="{{ url_for('static', path='photos/male.png') }}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p class="card-text">
-                    <div class="form-check">
-                        <input value="male" class="form-check-input" type="radio" name="gender" id="malegender">
-                        <label class="form-check-label" for="malegender">
-                            Male
-                        </label>
+            <div class="gender-container">
+                    <div class="card gendercard" style="width: 12rem;">
+                        <img src="{{ url_for('static', path='photos/male.png') }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text">
+                            <div class="form-check">
+                                <input value="male" class="form-check-input" type="radio" name="gender" id="malegender">
+                                <label class="form-check-label" for="malegender">
+                                    Male
+                                </label>
+                            </div>
+                            </p>
+                        </div>
                     </div>
-                    </p>
-                </div>
-            </div>
-            <div class="card gendercard" style="width: 18rem;">
-                <img src="{{ url_for('static', path='photos/female.png') }}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p class="card-text">
-                    <div class="form-check">
-                        <input value="female" class="form-check-input" type="radio" name="gender" id="femalegender">
-                        <label class="form-check-label" for="femalegender">
-                            Female
-                        </label>
+                    <div class="card gendercard" style="width: 12rem;">
+                        <img src="{{ url_for('static', path='photos/female.png') }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text">
+                            <div class="form-check">
+                                <input value="female" class="form-check-input" type="radio" name="gender"
+                                       id="femalegender">
+                                <label class="form-check-label" for="femalegender">
+                                    Female
+                                </label>
+                            </div>
+                            </p>
+                        </div>
                     </div>
-                    </p>
-                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
