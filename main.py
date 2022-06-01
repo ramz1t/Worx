@@ -90,6 +90,12 @@ def get_main_page(request: Request, current_user=Depends(get_current_user)):
                                                         "gender": current_user.gender})
 
 
+@app.get("/stats")
+def get_stats(request: Request, current_user=Depends(get_current_user)):
+    return templates.TemplateResponse("stats.html", {"request": request,
+                                                     "gender": current_user.gender})
+
+
 '''urls to edit smth'''
 
 
