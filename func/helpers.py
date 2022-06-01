@@ -92,8 +92,8 @@ def get_commits_leaderboard(data):
             users[name] = 0
         users[name] += 1
     k = 1
-    sorted_names = sorted(users, reverse=True)
-    for user in sorted_names:
+    users = dict(sorted(users.items(), key=lambda item: item[1], reverse=True))
+    for user in users:
         result.append(dict({'id': k, 'name': user, 'count': users.get(user)}))
         k += 1
     print(result)
