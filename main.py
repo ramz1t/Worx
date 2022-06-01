@@ -1,7 +1,7 @@
 from fastapi import FastAPI, requests, status
 from fastapi.responses import JSONResponse
 import uvicorn
-from git.gitfuncs import get_repo_commits, get_repo_contributors, get_user_repo_stats
+from git.gitfuncs import get_repo_commits, get_repo_contributors, get_user_repo_stats, get_repo_branches
 from git.params import Auth_params
 from logic.repo import get_repo_by_name, create_new_repo
 from models.repo import ApiCreateRepo, RepoInfo
@@ -23,7 +23,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
 from func.helpers import get_repo_users_count, get_most_effective_user, get_least_effective_user, \
-    get_repo_commits_count, get_user_repo_commits
+    get_repo_commits_count, get_user_repo_commits, get_repo_branches_count
 import requests
 from data.data import SERVER_DOMAIN
 from git.params import Auth_params
@@ -104,13 +104,16 @@ def get_stats(reponame: str, user: str, request: Request, current_user=Depends(g
     least_effective_user = get_least_effective_user(commits)
     commits_count = get_repo_commits_count(commits)
     user_repo_commits = get_user_repo_commits(commits, user)
+    branches = get_repo_branches(auth_params=Auth_params, repo_name=reponame, username=db_repo.owner_username)
+    repo_branches = get_repo_branches_count(branches)
     return templates.TemplateResponse("stats.html", {"request": request,
                                                      "gender": current_user.gender,
                                                      "repo_contributors_count": repo_contributors_count,
                                                      "most_effective_user": most_effective_user,
                                                      "least_effective_user": least_effective_user,
                                                      "repo_commits_count": commits_count,
-                                                     "user_repo_commits": user_repo_commits})
+                                                     "user_repo_commits": user_repo_commits,
+                                                     "repo_branches": repo_branches})
 
 
 '''urls to edit smth'''

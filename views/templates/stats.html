@@ -16,6 +16,8 @@
     <p>least effective user -   {{ least_effective_user }}</p>
     <p>commits count - {{ repo_commits_count }}</p>
     <p>commits from selected user - {{ user_repo_commits }}</p>
+    <p>contributors count - {{ repo_contributors_count }}</p>
+    <p>branches - {{ repo_branches }}</p>
     <div class="cards">
         <div class="card shadow-lg card-bg-custom" style="width: 18rem;">
             <img src="{{ url_for('static', path='photos/prodday.png') }}" class="card-img" alt="...">
@@ -30,7 +32,7 @@
             <img src="{{ url_for('static', path='photos/unprodday.png') }}" class="card-img-horizontal" alt="...">
           <div class="card-body card-bg-custom">
             <p class="card-text fw-bold fs-5 text-center ">Most unproductive day</p>
-            <p class="card-text fw-bold fs-3 text-center">{{ repo_contributors_count}}</p>
+            <p class="card-text fw-bold fs-3 text-center">Friday</p>
               
           </div>
         </div>

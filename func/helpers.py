@@ -73,3 +73,11 @@ def get_user_repo_commits(data, username):
         if commit['commit']['author']['name'] == username:
             k += 1
     return k
+
+
+def get_repo_issues_count(data):
+    return len(data)
+
+
+def get_repo_branches_count(data):
+    return len(data)

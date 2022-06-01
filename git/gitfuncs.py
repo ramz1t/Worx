@@ -26,10 +26,10 @@ def get_repo_issues(auth_params, repo_name, issue_id=''):
     return issues
 
 
-def get_repo_branches(auth_params, repo_name, sha=''):
+def get_repo_branches(auth_params, username, repo_name, sha=''):
     if sha != '':
         sha = '/' + sha
-    branches = requests.get(urls['branches_url'].format(auth_params['username'], repo_name, sha),
+    branches = requests.get(urls['branches_url'].format(username, repo_name, sha),
                             auth=tuple(auth_params.values())).json()
     return branches
 
