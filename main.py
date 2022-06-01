@@ -109,6 +109,8 @@ def get_stats(reponame: str, user: str, request: Request, current_user=Depends(g
     print(commits[0])
     commit_leaderboard = get_commits_leaderboard(commits)
     return templates.TemplateResponse("stats.html", {"request": request,
+                                                     "reponame": reponame,
+                                                     "username": user,
                                                      "gender": current_user.gender,
                                                      "repo_contributors_count": repo_contributors_count,
                                                      "most_effective_user": most_effective_user,
