@@ -4,7 +4,7 @@ import uvicorn
 from git.gitfuncs import get_repo_commits, get_repo_contributors, get_user_repo_stats
 from git.params import Auth_params
 from logic.repo import get_repo_by_name, create_new_repo
-from models.repo import ApiCreateRepo
+from models.repo import ApiCreateRepo, RepoInfo
 from logic.user import create_new_user, change_user_email, change_user_password, change_user_gender, change_user_name
 from models.user import ApiCreateUser, User, ChangeEmail, ChangeName, ChangePassword, ChangeGender
 import json
@@ -22,7 +22,10 @@ from logic.auth import authenticate_user, ACCESS_TOKEN_EXPIRE_MINUTES, create_ac
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
-import webbrowser
+from func.helpers import get_repo_users_count
+import requests
+from data.data import SERVER_DOMAIN
+from git.params import Auth_params
 
 
 app = FastAPI()
@@ -90,10 +93,14 @@ def get_main_page(request: Request, current_user=Depends(get_current_user)):
                                                         "gender": current_user.gender})
 
 
-@app.get("/stats")
-def get_stats(request: Request, current_user=Depends(get_current_user)):
+@app.post("/stats")
+def get_stats(repo: RepoInfo, request: Request, current_user=Depends(get_current_user)):
+    db_repo = get_repo_by_name(repo_name=repo.name)
+    contributors_list = get_repo_contributors(auth_params=Auth_params, repo_name=repo.name, users_name=db_repo.owner_username)
+    repo_contributors_count = get_repo_users_count(contributors_list)
     return templates.TemplateResponse("stats.html", {"request": request,
-                                                     "gender": current_user.gender})
+                                                     "gender": current_user.gender,
+                                                     "repo_contributors_count": repo_contributors_count})
 
 
 '''urls to edit smth'''

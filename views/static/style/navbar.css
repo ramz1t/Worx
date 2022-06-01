@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;500&family=Roboto&display=swap');
 
-body {
-    background-image: url("../photos/bg.png");
-}
 
 .navphoto {
     border-radius: 50%;

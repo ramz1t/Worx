@@ -17,3 +17,27 @@ def generate_token() -> str:
 def get_user_by_email(email: str):
     with Sessions() as session:
         return session.query(User).filter_by(email=email).first()
+
+
+def get_most_productive_day(data):
+    pass
+
+
+def get_most_effective_user(data):
+    pass
+
+
+def get_least_produstive_day(data):
+    pass
+
+
+def get_lines_per_commit(data):
+    pass
+
+
+def get_added_lines(data):
+    pass
+
+
+def get_repo_users_count(data):
+    return len(data)

@@ -15,3 +15,8 @@ class Repo(Base):
 class ApiCreateRepo(BaseModel):
     name: str
     owner_username: str
+
+
+class RepoInfo(BaseModel):
+    name: str
+    username: str

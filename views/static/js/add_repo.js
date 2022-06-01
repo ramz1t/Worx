@@ -1,7 +1,7 @@
 function add_repo() {
-        var reponame = document.getElementById("repository_name").value;
-        var ownername = document.getElementById("owner_name").value;
-        var repourl = document.getElementById("repourl").value;
+        var reponame = document.getElementById("repository_name").value.toLowerCase();
+        var ownername = document.getElementById("owner_name").value.toLowerCase();
+        var repourl = document.getElementById("repourl").value.toLowerCase();
         if (reponame != "" && ownername != "") {
             var url = SERVER_DOMAIN + "/addrepo/" + reponame + "/" + ownername;
             var response = fetch(url, {method: "POST", mode: "no-cors"});
