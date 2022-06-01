@@ -1,9 +1,8 @@
-
 <nav class="navbar navbar-expand-xxl bg-light ">
     <div class="container-fluid">
         <div class="container">
             <a class="nav_logo" href="">
-              <img src="{{ url_for('static', path='photos/worx.png') }}" alt="" class="nav_logo">
+                <img src="{{ url_for('static', path='photos/worx.png') }}" alt="" class="nav_logo">
             </a>
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -17,30 +16,38 @@
                        data-bs-target="#staticBackdrop">Add repo</a>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Choose Repo
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown1    ">
-                    <li><a class="dropdown-item" href="#">VKBot</a></li>
-                    <li><a class="dropdown-item" href="#">NaviApp</a></li>
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Choose Repo
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown1    ">
+                        <li><a class="dropdown-item" href="#">VKBot</a></li>
+                        <li><a class="dropdown-item" href="#">NaviApp</a></li>
 
-                  </ul>
+                    </ul>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Choose member
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#">egorbi</a></li>
-                    <li><a class="dropdown-item" href="#">ramz1</a></li>
-                  </ul>
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Choose member
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">egorbi</a></li>
+                        <li><a class="dropdown-item" href="#">ramz1</a></li>
+                    </ul>
                 </li>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="stats.html">Show stats</a>
                     </li>
                 </ul>
-                <a class="photo_position" href="/profile"><img class='navphoto' src="{{ url_for('static', path='photos/1.png') }}"></a>
+                <a class="photo_position" href="/profile">
+                    {% if gender == "male" %}
+                    <img class="navphoto" width="200" src="{{ url_for('static', path='photos/male.png') }}">
+                    {% else %}
+                    <img class="navphoto" width="200" src="{{ url_for('static', path='photos/female.png') }}">
+                    {% endif %}
+                </a>
             </ul>
         </div>
     </div>
@@ -74,7 +81,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <div id="inputerror" class="inputerror"><span class="badge text-white bg-danger">Not enough info</span></div>
+                    <div id="inputerror" class="inputerror"><span
+                            class="badge text-white bg-danger">Not enough info</span></div>
                     <button id="closerepo" type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                         Close
                     </button>
@@ -84,7 +92,7 @@
         </div>
     </div>
 </div>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
         integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
         crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
@@ -96,8 +104,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='style/style.css') }}">
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+        integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+        crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script rel="text/javascript" src="{{ url_for('static', path='js/settings.js') }}"></script>
 <script rel="text/javascript" src="{{ url_for('static', path='js/add_repo.js') }}"></script>
