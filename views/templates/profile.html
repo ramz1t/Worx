@@ -51,7 +51,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" onclick="clear_email()">Close</button>
                 <button type="button" class="btn btn-custom text-white" onclick="change_email()">Ok</button>
             </div>
         </div>
@@ -74,7 +74,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" onclick="clear_name()">Close</button>
                 <button type="button" class="btn btn-custom text-white" onclick="change_name()">Ok</button>
             </div>
         </div>
@@ -92,20 +92,20 @@
             </div>
             <div class="modal-body">
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="Old_pass" placeholder="name@example.com">
+                    <input type="password" class="form-control" id="Old_pass" placeholder="name@example.com">
                     <label for="Old_pass">Old password</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="New_pass" placeholder="name@example.com">
+                    <input type="password" class="form-control" id="New_pass" placeholder="name@example.com">
                     <label for="New_pass">New password</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="Repeat_new_pass" placeholder="name@example.com">
+                    <input type="password" class="form-control" id="Repeat_new_pass" placeholder="name@example.com">
                     <label for="Repeat_new_pass">Repeat new password</label>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" onclick="clear_password()">Close</button>
                 <button type="button" class="btn btn-custom text-white" onclick="change_password()">Ok</button>
             </div>
         </div>

@@ -84,3 +84,18 @@ async function change_password() {
     });
     window.open(SERVER_DOMAIN + '/profile', '_self');
 }
+
+function clear_name() {
+    document.getElementById("New_name").value = "";
+}
+
+function clear_email() {
+    document.getElementById("New_email").value = "";
+    document.getElementById("password").value = "";
+}
+
+function clear_password() {
+    document.getElementById("Old_pass").value = "";
+    document.getElementById("New_pass").value = "";
+    document.getElementById("Repeat_new_pass").value = "";
+}

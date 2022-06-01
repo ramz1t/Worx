@@ -22,6 +22,7 @@ from logic.auth import authenticate_user, ACCESS_TOKEN_EXPIRE_MINUTES, create_ac
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
+import webbrowser
 
 
 app = FastAPI()
