@@ -71,6 +71,11 @@ async function change_password() {
     var new_pass = document.getElementById("New_pass").value;
     var old_pass = document.getElementById("Old_pass").value;
     var repeat_new_pass = document.getElementById("Repeat_new_pass").value;
+    if (new_pass != repeat_new_pass) {
+        document.getElementById("New_pass").classList.add('is-invalid');
+        document.getElementById("Repeat_new_pass").classList.add('is-invalid');
+        return;
+    }
     var response = await fetch(SERVER_DOMAIN + '/change_password', {
         method: 'POST',
         headers: {
@@ -82,7 +87,23 @@ async function change_password() {
             'old_password': old_pass
         })
     });
-    window.open(SERVER_DOMAIN + '/profile', '_self');
+    var email = document.getElementById("email").innerHTML;
+    if (response.ok) {
+        alert('password changed');
+        response = await fetch(SERVER_DOMAIN + '/token', {
+                            method: 'POST',
+                            headers: {
+                                'accept': 'application/json'
+                            },
+                            body: new URLSearchParams({
+                                'username': email,
+                                'password': new_pass
+                            })
+                        });
+        window.open(SERVER_DOMAIN + '/profile', '_self');
+    } else {
+        alert('Wrong credentials');
+    }
 }
 
 function clear_name() {
