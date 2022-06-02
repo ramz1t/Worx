@@ -21,9 +21,20 @@ async function submit() {
     } else {
         return;
     }
-    var url = SERVER_DOMAIN + '/createaccount/' + email + '/' + pass + '/' + gender + '/' + name;
-    var response = await fetch(url, {method: "POST", mode: "no-cors"});
-    if (response.status != '201') {
+    var response = await fetch('http://127.0.0.1:8000/createaccount', {
+                            method: 'POST',
+                            headers: {
+                                'accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                'email': email,
+                                'password': pass,
+                                'gender': gender,
+                                'name': name
+                            })
+    });
+    if (!response.ok) {
         if (response.status == '400') {
             alert('Invalid data');
         } else if (response.status == '409') {
