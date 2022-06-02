@@ -92,12 +92,15 @@ def get_profile(request: Request, current_user=Depends(get_current_user)):
 
 @app.get("/main")
 def get_main_page(request: Request, current_user=Depends(get_current_user)):
+    repos = get_user_added_repos(user_id=current_user.id)
     return templates.TemplateResponse("mainpage.html", {"request": request,
-                                                        "gender": current_user.gender})
+                                                        "gender": current_user.gender,
+                                                        "repos": repos})
 
 
 @app.get("/stats/{reponame}/{user}")
 def get_stats(reponame: str, user: str, request: Request, current_user=Depends(get_current_user)):
+    repos = get_user_added_repos(user_id=current_user.id)
     db_repo = get_repo_by_name(repo_name=reponame)
     contributors_list = get_repo_contributors(auth_params=Auth_params, repo_name=reponame, users_name=db_repo.owner_username)
     commits = get_repo_commits(auth_params=Auth_params, repo_name=reponame, username=db_repo.owner_username)
@@ -120,7 +123,8 @@ def get_stats(reponame: str, user: str, request: Request, current_user=Depends(g
                                                      "repo_commits_count": commits_count,
                                                      "user_repo_commits": user_repo_commits,
                                                      "repo_branches": repo_branches,
-                                                     "commit_leaderboard": commit_leaderboard})
+                                                     "commit_leaderboard": commit_leaderboard,
+                                                     "repos": repos})
 
 
 '''urls to edit smth'''
