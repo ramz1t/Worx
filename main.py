@@ -3,9 +3,10 @@ from fastapi.responses import JSONResponse
 import uvicorn
 from git.gitfuncs import get_repo_commits, get_repo_contributors, get_user_repo_stats, get_repo_branches
 from git.params import Auth_params
-from logic.repo import get_repo_by_name, create_new_repo
+from logic.repo import get_repo_by_name, create_new_repo, create_repo
 from models.repo import ApiCreateRepo, RepoInfo
-from logic.user import create_new_user, change_user_email, change_user_password, change_user_gender, change_user_name
+from logic.user import create_new_user, change_user_email, change_user_password, change_user_gender, change_user_name, \
+    add_repo_to_user, get_user_added_repos
 from models.user import ApiCreateUser, User, ChangeEmail, ChangeName, ChangePassword, ChangeGender
 import json
 from datetime import datetime, timedelta
@@ -38,8 +39,9 @@ templates = Jinja2Templates(directory="views/templates")
 
 
 @app.post('/addrepo')
-def add_repo(repo: ApiCreateRepo):
-    response = create_new_repo(repo)
+def add_repo(repo: ApiCreateRepo, current_user=Depends(get_current_user)):
+    user_repo = create_repo(repo)
+    response = add_repo_to_user(user_repo, current_user.id)
     return response
 
 
@@ -80,10 +82,12 @@ def register(request: Request):
 
 @app.get("/profile")
 def get_profile(request: Request, current_user=Depends(get_current_user)):
+    repos = get_user_added_repos(user_id=current_user.id)
     return templates.TemplateResponse("profile.html", {"request": request,
                                                        "email": current_user.email,
                                                        "name": current_user.name,
-                                                       "gender": current_user.gender})
+                                                       "gender": current_user.gender,
+                                                       "repos": repos})
 
 
 @app.get("/main")

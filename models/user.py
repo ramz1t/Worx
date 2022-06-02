@@ -3,6 +3,8 @@ from data.data import Base
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 from models.association_user_repo import association_table
+from models.repo import Repo
+
 
 class User(Base):
     """
@@ -13,7 +15,7 @@ class User(Base):
     password = Column(String)
     gender = Column(String)
     name = Column(String)
-    repos = relationship("Repo", secondary=association_table)
+    repos = relationship("Repo", backref="user", cascade="all,delete,save-update", secondary=association_table)
 
 
 class ApiCreateUser(BaseModel):

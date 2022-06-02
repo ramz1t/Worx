@@ -3,7 +3,7 @@ from fastapi import status
 from models.user import User, ApiCreateUser
 from data.data import Sessions
 from logic.auth import get_password_hash, verify_password
-
+from models.repo import ApiCreateRepo
 
 def create_new_user(api_user) -> JSONResponse:
     with Sessions() as session:
@@ -70,3 +70,25 @@ def delete_user(_id):
         user = session.query(User).filter_by(id=_id).first()
         session.delete(user)
         return JSONResponse(status_code=status.HTTP_201_CREATED, content='Successfully')
+
+
+def add_repo_to_user(repo: ApiCreateRepo, user_id):
+    with Sessions() as session:
+        user = session.query(User).filter_by(id=user_id).first()
+        if user is None:
+            return JSONResponse(status_code=status.HTTP_404_NOT_FOUND, content='user not found')
+        user.repos.append(repo)
+        session.add(user)
+        session.commit()
+        return JSONResponse(status_code=status.HTTP_201_CREATED, content='Successfully')
+
+
+def get_user_added_repos(user_id: int):
+    with Sessions() as session:
+        user = session.query(User).filter_by(id=user_id).first()
+        if user is None:
+            return JSONResponse(status_code=status.HTTP_404_NOT_FOUND, content='user not found')
+        repos = []
+        for repo in user.repos:
+            repos.append(repo.name)
+        return repos

@@ -13,7 +13,7 @@ async function login() {
         })
     });
     if (response.status == '200') {
-        window.open(SERVER_DOMAIN + '/profile', '_self');
+        window.open(SERVER_DOMAIN + '/main', '_self');
     } else {
         alert(response.status);
     }
