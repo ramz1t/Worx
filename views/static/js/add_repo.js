@@ -1,9 +1,9 @@
-function add_repo() {
+async function add_repo() {
         var reponame = document.getElementById("repository_name").value.toLowerCase();
         var ownername = document.getElementById("owner_name").value.toLowerCase();
         var repourl = document.getElementById("repourl").value.toLowerCase();
         if (reponame != "" && ownername != "") {
-            var response = fetch(SERVER_DOMAIN + '/addrepo', {
+            var response = await fetch(SERVER_DOMAIN + '/addrepo', {
                             method: 'POST',
                             headers: {
                                 'accept': 'application/json',
@@ -18,7 +18,7 @@ function add_repo() {
             var a = url.split("/");
             reponame = a[2];
             ownername = a[1];
-            var response = fetch(SERVER_DOMAIN + '/addrepo', {
+            var response = await fetch(SERVER_DOMAIN + '/addrepo', {
                             method: 'POST',
                             headers: {
                                 'accept': 'application/json',
