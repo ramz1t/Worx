@@ -37,16 +37,14 @@ templates = Jinja2Templates(directory="views/templates")
 '''urls to add smth'''
 
 
-@app.post('/addrepo/{reponame}/{owner_username}')
-def add_repo(reponame, owner_username):
-    repo = ApiCreateRepo(name=reponame, owner_username=owner_username)
+@app.post('/addrepo')
+def add_repo(repo: ApiCreateRepo):
     response = create_new_repo(repo)
     return response
 
 
-@app.post('/createaccount/{login}/{passhash}/{gender}/{name}')
-def create_account(login, passhash, gender, name):
-    user = ApiCreateUser(email=login, password=passhash, gender=gender, name=name)
+@app.post('/createaccount')
+def create_account(user: ApiCreateUser):
     response = create_new_user(user)
     return response
 
