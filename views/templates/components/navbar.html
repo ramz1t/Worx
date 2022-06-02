@@ -21,25 +21,17 @@
                         Choose Repo
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown1    ">
+                        {% for reponame in repos %}
                         <li>
-                            <div class="form-check">
+                            <div class="form-check navbar-choice">
                                 <input class="form-check-input" type="radio" name="choose_repo"
-                                       id="repo1" value="naviapp">
+                                       id="repo1" value="{{ reponame }}">
                                 <label class="form-check-label" for="repo1">
-                                    NaviApp
+                                    {{ reponame }}
                                 </label>
                             </div>
                         </li>
-                        <li>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="choose_repo"
-                                       id="repo2" value="worx">
-                                <label class="form-check-label" for="repo2">
-                                    worx
-                                </label>
-                            </div>
-                        </li>
-
+                        {% endfor %}
                     </ul>
                 </li>
                 <li class="nav-item dropdown">

@@ -38,6 +38,7 @@ async function add_repo() {
             document.getElementById("owner_name").value = "";
             document.getElementById("repourl").value = "";
             document.getElementById("inputerror").style = "visibility: hidden";
+            window.open(window.location.href, '_self');
         } else {
             alert('error while adding repo');
         }

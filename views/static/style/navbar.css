@@ -90,3 +90,7 @@
 .users-commits {
     width: 50%;
 }
+
+.navbar-choice {
+    padding-left: 15px !important;
+}
