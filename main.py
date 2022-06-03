@@ -29,7 +29,7 @@ from func.helpers import get_repo_users_count, get_most_effective_user, get_leas
 import requests
 from data.data import SERVER_DOMAIN
 from git.params import Auth_params
-from models.stats import StatsPage
+from models.stats import StatsPage, NavbarData
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="views/static"), name="static")
@@ -105,12 +105,9 @@ def get_main_page(request: Request, current_user=Depends(get_current_user)):
 
 @app.get("/stats/{reponame}/{user}")
 def get_stats(reponame: str, user: str, request: Request, current_user=Depends(get_current_user)):
-    repos = get_user_added_repos(user_id=current_user.id)
-    db_repo = get_repo_by_name(reponame)
-    contributors_list = get_repo_contributors(auth_params=Auth_params, repo_name=reponame, users_name=db_repo.owner_username)
-    users = repo_users(contributors_list)
+    navbar_data = NavbarData(current_user=current_user, reponame=reponame, Auth_params=Auth_params)
     stats = StatsPage(reponame=reponame, username=user, Auth_params=Auth_params, request=request, current_user=current_user)
-    return templates.TemplateResponse("stats.html", stats.export())
+    return templates.TemplateResponse("stats.html", {**stats.export(), **navbar_data.export()})
 
 
 @app.get('/show_users/{reponame}')
@@ -120,6 +117,7 @@ def show_users(reponame):
                                               users_name=db_repo.owner_username)
     chosen_repo_users = repo_users(contributors_list)
     pass
+
 
 '''urls to edit smth'''
 

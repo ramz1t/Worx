@@ -5,9 +5,10 @@ from func.helpers import get_repo_users_count, get_most_effective_user, get_leas
     repo_users
 from logic.repo import get_repo_by_name
 from git.gitfuncs import get_repo_commits, get_repo_contributors, get_user_repo_stats, get_repo_branches
-
+from logic.user import get_user_added_repos
 
 class StatsPage:
+
     def __init__(self, Auth_params, username: str, reponame: str, current_user: User, request: Request) -> None:
         self.username = username
         self.reponame = reponame
@@ -50,3 +51,24 @@ class StatsPage:
                 "user_repo_commits": self.user_repo_commits,
                 "repo_branches": self.repo_branches,
                 "commit_leaderboard": self.commit_leaderboard}
+
+
+class NavbarData:
+
+    def __init__(self, current_user: User, Auth_params, reponame: str) -> None:
+        self.reponame = reponame
+        self.current_user = current_user
+        self.Auth_params = Auth_params
+        self.repos = []
+        self.users = []
+
+    def make(self):
+        self.repos = get_user_added_repos(user_id=self.current_user.id)
+        db_repo = get_repo_by_name(self.reponame)
+        contributors_list = get_repo_contributors(auth_params=self.Auth_params, repo_name=self.reponame,
+                                                  users_name=db_repo.owner_username)
+        self.users = repo_users(contributors_list)
+
+    def export(self):
+        self.make()
+        return {"repos": self.repos, "users": self.users}
