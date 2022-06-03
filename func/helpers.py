@@ -98,3 +98,11 @@ def get_commits_leaderboard(data):
         k += 1
     print(result)
     return result
+
+
+def repo_users(data):
+    users = set()
+    for user in data:
+        name = user['login']
+        users.add(name)
+    return users

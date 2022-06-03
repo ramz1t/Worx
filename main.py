@@ -24,11 +24,12 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
 from func.helpers import get_repo_users_count, get_most_effective_user, get_least_effective_user, \
-    get_repo_commits_count, get_user_repo_commits, get_repo_branches_count, get_commits_leaderboard
+    get_repo_commits_count, get_user_repo_commits, get_repo_branches_count, get_commits_leaderboard, \
+    repo_users
 import requests
 from data.data import SERVER_DOMAIN
 from git.params import Auth_params
-
+from models.stats import StatsPage
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="views/static"), name="static")
@@ -83,49 +84,42 @@ def register(request: Request):
 @app.get("/profile")
 def get_profile(request: Request, current_user=Depends(get_current_user)):
     repos = get_user_added_repos(user_id=current_user.id)
+    users = []
     return templates.TemplateResponse("profile.html", {"request": request,
                                                        "email": current_user.email,
                                                        "name": current_user.name,
                                                        "gender": current_user.gender,
-                                                       "repos": repos})
+                                                       "repos": repos,
+                                                       "users": users})
 
 
 @app.get("/main")
 def get_main_page(request: Request, current_user=Depends(get_current_user)):
     repos = get_user_added_repos(user_id=current_user.id)
+    users = []
     return templates.TemplateResponse("mainpage.html", {"request": request,
                                                         "gender": current_user.gender,
-                                                        "repos": repos})
+                                                        "repos": repos,
+                                                        "users": users})
 
 
 @app.get("/stats/{reponame}/{user}")
 def get_stats(reponame: str, user: str, request: Request, current_user=Depends(get_current_user)):
     repos = get_user_added_repos(user_id=current_user.id)
-    db_repo = get_repo_by_name(repo_name=reponame)
+    db_repo = get_repo_by_name(reponame)
     contributors_list = get_repo_contributors(auth_params=Auth_params, repo_name=reponame, users_name=db_repo.owner_username)
-    commits = get_repo_commits(auth_params=Auth_params, repo_name=reponame, username=db_repo.owner_username)
-    repo_contributors_count = get_repo_users_count(contributors_list)
-    most_effective_user = get_most_effective_user(commits)
-    least_effective_user = get_least_effective_user(commits)
-    commits_count = get_repo_commits_count(commits)
-    user_repo_commits = get_user_repo_commits(commits, user)
-    branches = get_repo_branches(auth_params=Auth_params, repo_name=reponame, username=db_repo.owner_username)
-    repo_branches = get_repo_branches_count(branches)
-    print(commits[0])
-    commit_leaderboard = get_commits_leaderboard(commits)
-    return templates.TemplateResponse("stats.html", {"request": request,
-                                                     "reponame": reponame,
-                                                     "username": user,
-                                                     "gender": current_user.gender,
-                                                     "repo_contributors_count": repo_contributors_count,
-                                                     "most_effective_user": most_effective_user,
-                                                     "least_effective_user": least_effective_user,
-                                                     "repo_commits_count": commits_count,
-                                                     "user_repo_commits": user_repo_commits,
-                                                     "repo_branches": repo_branches,
-                                                     "commit_leaderboard": commit_leaderboard,
-                                                     "repos": repos})
+    users = repo_users(contributors_list)
+    stats = StatsPage(reponame=reponame, username=user, Auth_params=Auth_params, request=request, current_user=current_user)
+    return templates.TemplateResponse("stats.html", stats.export())
 
+
+@app.get('/show_users/{reponame}')
+def show_users(reponame):
+    db_repo = get_repo_by_name(repo_name=reponame)
+    contributors_list = get_repo_contributors(auth_params=Auth_params, repo_name=reponame,
+                                              users_name=db_repo.owner_username)
+    chosen_repo_users = repo_users(contributors_list)
+    pass
 
 '''urls to edit smth'''
 

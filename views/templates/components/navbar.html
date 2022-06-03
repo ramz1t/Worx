@@ -25,8 +25,8 @@
                         <li>
                             <div class="form-check navbar-choice">
                                 <input class="form-check-input" type="radio" name="choose_repo"
-                                       id="repo1" value="{{ reponame }}" onclick="set_chosen_repo()">
-                                <label class="form-check-label" for="repo1">
+                                       id="{{ reponame }}" value="{{ reponame }}" onclick="set_chosen_repo()">
+                                <label class="form-check-label" for="{{ reponame }}">
                                     {{ reponame }}
                                 </label>
                             </div>
@@ -40,30 +40,23 @@
                         Choose member
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% for username in users %}
                         <li>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="choose_user" onclick="set_chosen_user()"
-                                       id="user1" value="ramz1t">
-                                <label class="form-check-label" for="user1">
-                                    Ramz1t
+                            <div class="form-check navbar-choice">
+                                <input class="form-check-input" type="radio" name="choose_repo"
+                                       id="{{ username }}" value="{{ username }}" onclick="set_chosen_user()">
+                                <label class="form-check-label" for="{{ username }}">
+                                    {{ username }}
                                 </label>
                             </div>
                         </li>
+                        {% endfor %}
                         <li>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="choose_user" onclick="set_chosen_user()"
                                        id="user2" value="rakomorzh">
                                 <label class="form-check-label" for="user2">
                                     rakomorzh
-                                </label>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="choose_user"
-                                       id="user3" value="egorbi">
-                                <label class="form-check-label" for="user3">
-                                    egorbi
                                 </label>
                             </div>
                         </li>
