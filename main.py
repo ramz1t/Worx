@@ -25,7 +25,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
 from func.helpers import get_repo_users_count, get_most_effective_user, get_least_effective_user, \
     get_repo_commits_count, get_user_repo_commits, get_repo_branches_count, get_commits_leaderboard, \
-    repo_users
+    repo_users, get_cookie_repo
 import requests
 from data.data import SERVER_DOMAIN
 from git.params import Auth_params
@@ -95,18 +95,15 @@ def get_profile(request: Request, current_user=Depends(get_current_user)):
 
 @app.get("/main")
 def get_main_page(request: Request, current_user=Depends(get_current_user)):
-    repos = get_user_added_repos(user_id=current_user.id)
-    users = []
-    return templates.TemplateResponse("mainpage.html", {"request": request,
-                                                        "gender": current_user.gender,
-                                                        "repos": repos,
-                                                        "users": users})
+    navbar_data = NavbarData(current_user=current_user, reponame='vkbot')
+    res = {"request": request, "gender": current_user.gender}
+    return templates.TemplateResponse("mainpage.html", {**res, **navbar_data.export()})
 
 
 @app.get("/stats/{reponame}/{user}")
 def get_stats(reponame: str, user: str, request: Request, current_user=Depends(get_current_user)):
-    navbar_data = NavbarData(current_user=current_user, reponame=reponame, Auth_params=Auth_params)
-    stats = StatsPage(reponame=reponame, username=user, Auth_params=Auth_params, request=request, current_user=current_user)
+    navbar_data = NavbarData(current_user=current_user, reponame=reponame)
+    stats = StatsPage(reponame=reponame, username=user, request=request, current_user=current_user)
     return templates.TemplateResponse("stats.html", {**stats.export(), **navbar_data.export()})
 
 
@@ -140,6 +137,16 @@ def change_gender(body: ChangeGender, current_user=Depends(get_current_user)):
 @app.post("/change_name")
 def change_name(body: ChangeName, current_user=Depends(get_current_user)):
     return change_user_name(email=current_user.email, new_name=body.new_name)
+
+
+'''to get data'''
+
+
+@app.get("/users/{reponame}")
+def get_users_from_repo(reponame):
+    db_repo = get_repo_by_name(reponame)
+    data = get_repo_contributors(auth_params=Auth_params, repo_name=reponame, users_name=db_repo.owner_username)
+    return repo_users(data)
 
 
 if __name__ == "__main__":  # Запуск сервера

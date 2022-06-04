@@ -1,7 +1,8 @@
 import hashlib
 import secrets
-from data.data import Sessions
+from data.data import Sessions, SERVER_DOMAIN
 from models.user import User
+import requests
 
 auth_token_len = 20
 
@@ -31,9 +32,9 @@ def get_most_effective_user(data):
             users[name] = 1
         else:
             users[name] += 1
+    users = dict(sorted(users.items(), key=lambda item: item[1]))
     most_effective_user = max(users)
     return most_effective_user
-
 
 def get_least_effective_user(data):
     users = {}
@@ -106,3 +107,10 @@ def repo_users(data):
         name = user['login']
         users.add(name)
     return users
+
+
+def get_cookie_repo():
+    response = requests.get(SERVER_DOMAIN + '/main')
+    for c in response.cookies:
+        if c.name == 'chosen_repo':
+            return c.value

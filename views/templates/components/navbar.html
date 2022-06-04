@@ -39,28 +39,28 @@
                        data-bs-toggle="dropdown" aria-expanded="false">
                         Choose member
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        {% for username in users %}
-                        <li>
-                            <div class="form-check navbar-choice">
-                                <input class="form-check-input" type="radio" name="choose_repo"
-                                       id="{{ username }}" value="{{ username }}" onclick="set_chosen_user()">
-                                <label class="form-check-label" for="{{ username }}">
-                                    {{ username }}
-                                </label>
-                            </div>
-                        </li>
-                        {% endfor %}
-                        <li>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="choose_user" onclick="set_chosen_user()"
-                                       id="user2" value="rakomorzh">
-                                <label class="form-check-label" for="user2">
-                                    rakomorzh
-                                </label>
-                            </div>
-                        </li>
-                    </ul>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="users_wrapper">
+                            {% for username in users %}
+                            <li>
+                                <div class="form-check navbar-choice">
+                                    <input class="form-check-input" type="radio" name="choose_user"
+                                           id="{{ username }}" value="{{ username }}">
+                                    <label class="form-check-label" for="{{ username }}">
+                                        {{ username }}
+                                    </label>
+                                </div>
+                            </li>
+                            {% endfor %}
+                            <li>
+                                <div class="form-check navbar-choice">
+                                    <input class="form-check-input" type="radio" name="choose_user"
+                                           id="aaa" value="aaa">
+                                    <label class="form-check-label" for="aaa">
+                                        aaa
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
                 </li>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
