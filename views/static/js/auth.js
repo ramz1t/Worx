@@ -1,4 +1,6 @@
 async function submit() {
+    const toasterror = document.getElementById('toast');
+    const toast = new bootstrap.Toast(toasterror);
     var pass = document.getElementById("password").value;
     var subpass = document.getElementById("repeatpassword").value;
     var email = document.getElementById("email").value;
@@ -38,7 +40,8 @@ async function submit() {
         if (response.status == '400') {
             alert('Invalid data');
         } else if (response.status == '409') {
-            alert('Email already in use');
+            document.getElementById("alert-message").innerHTML = 'Email already in use'
+            toast.show()
         }
     } else {
         window.open(SERVER_DOMAIN + '/', '_self');
