@@ -33,6 +33,7 @@ async function set_chosen_repo() {
         input.setAttribute('name', 'choose_user');
         input.setAttribute('id', username);
         input.setAttribute('value', username);
+        input.classList.add('form-check-input');
         formcheckDiv.append(input);
         var label = document.createElement('label');
         label.classList.add('form-check-label');
