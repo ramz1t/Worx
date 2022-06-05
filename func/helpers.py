@@ -97,7 +97,6 @@ def get_commits_leaderboard(data):
     for user in users:
         result.append(dict({'id': k, 'name': user, 'count': users.get(user)}))
         k += 1
-    print(result)
     return result
 
 
