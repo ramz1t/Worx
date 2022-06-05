@@ -29,3 +29,7 @@
 #stats-wrapper {
     margin: 15px;
 }
+
+.stats-icon {
+    padding-right: 5px;
+}

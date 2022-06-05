@@ -20,6 +20,7 @@
 <div id="stats-wrapper">
     <div class="card">
         <div class="card-header">
+            <i class="bi bi-person-check stats-icon"></i>
             Most effective user
         </div>
         <div class="card-body">
@@ -32,6 +33,7 @@
     </div>
     <div class="card">
         <div class="card-header">
+            <i class="bi bi-person-x stats-icon"></i>
             Least effective user
         </div>
         <div class="card-body">
@@ -44,6 +46,7 @@
     </div>
     <div class="card">
         <div class="card-header">
+            <i class="bi bi-arrow-up-right stats-icon"></i>
             Total commits count
         </div>
         <div class="card-body">
@@ -57,19 +60,7 @@
     </div>
     <div class="card">
         <div class="card-header">
-            Total commits count
-        </div>
-        <div class="card-body">
-            <blockquote class="blockquote mb-0">
-                <p><b>{{ repo_commits_count }}</b></p>
-                <footer class="blockquote-footer">Total amount of commits pushed to <cite title="Source Title">{{
-                    reponame
-                    }}</cite></footer>
-            </blockquote>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header">
+            <i class="bi bi-person-bounding-box stats-icon"></i>
             Commits from selected user
         </div>
         <div class="card-body">
@@ -85,6 +76,7 @@
     </div>
     <div class="card">
         <div class="card-header">
+            <i class="bi bi-people stats-icon"></i>
             Contributors count
         </div>
         <div class="card-body">
@@ -99,6 +91,7 @@
     </div>
     <div class="card">
         <div class="card-header">
+            <i class="bi bi-git stats-icon"></i>
             Branches
         </div>
         <div class="card-body">
@@ -203,6 +196,7 @@ const myChart = new Chart(ctx, {
         }
     }
 });
+
 
 
 
