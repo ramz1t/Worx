@@ -9,12 +9,12 @@ body{
     margin:auto;
 }
 
-.btn{
-  margin: auto;
-  width: 102%;
-  padding: 10px;
-  padding-left:0px;
-  padding-right:25px;
+.btn-custom{
+    padding-top: 10px;
+    margin: auto;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
 .had{
@@ -25,6 +25,7 @@ body{
     color:black !important;
 }
 
-.btn-custom{
+.btn-login-custom{
     background-color:#4527A0 !important;
+    width: 100%;
 }
