@@ -7,7 +7,7 @@
 .card{
     border-radius: 15px !important;
     float:left;
-    margin: 75px;
+    margin: 35px;
     border-color: #4527a0 !important;
 }
 .graph1{
@@ -24,4 +24,8 @@
 
 .btn-custom{
     background-color:#4527A0 !important;
+}
+
+#stats-wrapper {
+    margin: 15px;
 }

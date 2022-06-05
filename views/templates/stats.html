@@ -8,6 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"
             integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="{{ url_for('static', path='style/stats.css') }}">
 
 </head>
 <body>
@@ -16,68 +17,156 @@
 <br>
 <br>
 <h1>Selected repo and user: {{reponame}}, {{username}}</h1>
-<p>most effective user - {{ most_effective_user }}</p>
-<p>least effective user - {{ least_effective_user }}</p>
-<p>commits count - {{ repo_commits_count }}</p>
-<p>commits from selected user - {{ user_repo_commits }}</p>
-<p>contributors count - {{ repo_contributors_count }}</p>
-<p>branches - {{ repo_branches }}</p>
-<table class="table users-commits">
-    <thead>
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">Username</th>
-        <th scope="col">Commits count</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for commit in commit_leaderboard %}
-    <tr>
-        <th scope="row">{{ commit.id }}</th>
-        <td>{{ commit.name }}</td>
-        <td>{{ commit.count }}</td>
-    </tr>
-    {% endfor %}
-    </tbody>
-</table>
-<div class="cards">
-
-    <div class="card shadow-lg card-bg-custom" style="width: 18rem;">
-        <img src="{{ url_for('static', path='photos/prodday.png') }}" class="card-img" alt="...">
-        <div class="card-body card-bg-custom">
-            <p class="card-text fw-bold fs-5 text-center">Most productive day</p>
-            <p class="card-text fw-bold fs-3 text-center">Monday</p>
-            <canvas class="graph1" id="myChart" width="800" height="800"></canvas>
+<div id="stats-wrapper">
+    <div class="card">
+        <div class="card-header">
+            Most effective user
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <p><b>{{ most_effective_user }}</b></p>
+                <footer class="blockquote-footer">User who made most commits in <cite title="Source Title">{{ reponame
+                    }}</cite></footer>
+            </blockquote>
         </div>
     </div>
-
-    <div class="card card-bg-custom shadow-lg" style="width: 18rem;">
-        <img src="{{ url_for('static', path='photos/unprodday.png') }}" class="card-img-horizontal" alt="...">
-        <div class="card-body card-bg-custom">
-            <p class="card-text fw-bold fs-5 text-center ">Most unproductive day</p>
-            <p class="card-text fw-bold fs-3 text-center">Friday</p>
-
+    <div class="card">
+        <div class="card-header">
+            Least effective user
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <p><b>{{ least_effective_user }}</b></p>
+                <footer class="blockquote-footer">User who made least commits in <cite title="Source Title">{{ reponame
+                    }}</cite></footer>
+            </blockquote>
         </div>
     </div>
-    <div class="card shadow-lg card-bg-custom" style="width: 18rem;">
-        <img src="{{ url_for('static', path='photos/commited.png') }}" class="card-img" alt="...">
-        <div class="card-body card-bg-custom">
-            <p class="card-text fw-bold fs-5 text-center">Lines per commit</p>
-            <p class="card-text fw-bold fs-3 text-center">~50</p>
-
+    <div class="card">
+        <div class="card-header">
+            Total commits count
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <p><b>{{ repo_commits_count }}</b></p>
+                <footer class="blockquote-footer">Total amount of commits pushed to <cite title="Source Title">{{
+                    reponame
+                    }}</cite></footer>
+            </blockquote>
         </div>
     </div>
+    <div class="card">
+        <div class="card-header">
+            Total commits count
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <p><b>{{ repo_commits_count }}</b></p>
+                <footer class="blockquote-footer">Total amount of commits pushed to <cite title="Source Title">{{
+                    reponame
+                    }}</cite></footer>
+            </blockquote>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            Commits from selected user
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <p><b>{{ user_repo_commits }}</b></p>
+                <footer class="blockquote-footer">Total amount of commits pushed to <cite title="Source Title">{{
+                    reponame
+                    }}</cite> by <cite title="Source Title">{{
+                    username
+                    }}</cite></footer>
+            </blockquote>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            Contributors count
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <p><b>{{ repo_contributors_count }}</b></p>
+                <footer class="blockquote-footer">Total amount people who made smth in <cite title="Source Title">{{
+                    reponame
+                    }}</cite>
+                </footer>
+            </blockquote>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            Branches
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <p><b>{{ repo_branches }}</b></p>
+                <footer class="blockquote-footer">Total amount of branches in <cite title="Source Title">{{
+                    reponame
+                    }}</cite>
+                </footer>
+            </blockquote>
+        </div>
+    </div>
+    <table class="table users-commits">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Username</th>
+            <th scope="col">Commits count</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for commit in commit_leaderboard %}
+        <tr>
+            <th scope="row">{{ commit.id }}</th>
+            <td>{{ commit.name }}</td>
+            <td>{{ commit.count }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="cards">
 
-    <div class="card card-bg-custom shadow-lg" style="width: 18rem;">
-        <img src="{{ url_for('static', path='photos/added.png') }}" class="card-img-horizontal" alt="...">
-        <div class="card-body card-bg-custom">
-            <p class="card-text fw-bold fs-5 text-center ">Lines added</p>
-            <p class="card-text fw-bold fs-3 text-center">+73</p>
+        <div class="card shadow-lg card-bg-custom" style="width: 18rem;">
+            <img src="{{ url_for('static', path='photos/prodday.png') }}" class="card-img" alt="...">
+            <div class="card-body card-bg-custom">
+                <p class="card-text fw-bold fs-5 text-center">Most productive day</p>
+                <p class="card-text fw-bold fs-3 text-center">Monday</p>
+                <canvas class="graph1" id="myChart" width="800" height="800"></canvas>
+            </div>
+        </div>
 
+        <div class="card card-bg-custom shadow-lg" style="width: 18rem;">
+            <img src="{{ url_for('static', path='photos/unprodday.png') }}" class="card-img-horizontal" alt="...">
+            <div class="card-body card-bg-custom">
+                <p class="card-text fw-bold fs-5 text-center ">Most unproductive day</p>
+                <p class="card-text fw-bold fs-3 text-center">Friday</p>
+
+            </div>
+        </div>
+        <div class="card shadow-lg card-bg-custom" style="width: 18rem;">
+            <img src="{{ url_for('static', path='photos/commited.png') }}" class="card-img" alt="...">
+            <div class="card-body card-bg-custom">
+                <p class="card-text fw-bold fs-5 text-center">Lines per commit</p>
+                <p class="card-text fw-bold fs-3 text-center">~50</p>
+
+            </div>
+        </div>
+
+        <div class="card card-bg-custom shadow-lg" style="width: 18rem;">
+            <img src="{{ url_for('static', path='photos/added.png') }}" class="card-img-horizontal" alt="...">
+            <div class="card-body card-bg-custom">
+                <p class="card-text fw-bold fs-5 text-center ">Lines added</p>
+                <p class="card-text fw-bold fs-3 text-center">+73</p>
+
+            </div>
         </div>
     </div>
 </div>
-
 
 </body>
 
@@ -114,5 +203,7 @@ const myChart = new Chart(ctx, {
         }
     }
 });
+
+
 
 </script>
