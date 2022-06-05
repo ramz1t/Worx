@@ -27,12 +27,22 @@
     border-radius: 50%;
 }
 
+#navbar {
+    align-items: center;
+    height: 4rem;
+}
+
 .nav_logo{
-    height:50px;
+    height:40px;
 }
 .container{
     padding-right: 50px;
-    width:45px;
+    width: 45px;
+}
+
+#navicon{
+padding-right: 50px;
+    width: 45px;
 }
 
 .error-custom{
