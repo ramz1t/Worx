@@ -16,8 +16,8 @@
 <div class="nav">{% include 'components/navbar.html' %}</div>
 <br>
 <br>
-<h1>Selected repo and user: {{reponame}}, {{username}}</h1>
-<div id="stats-wrapper">
+<h1 class="special-line">Selected repo and user: {{reponame}}, {{username}}</h1>
+<div class="stats-wrapper">
     <div class="card">
         <div class="card-header">
             <i class="bi bi-person-check stats-icon"></i>
@@ -104,100 +104,27 @@
             </blockquote>
         </div>
     </div>
-    <table class="table users-commits">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Username</th>
-            <th scope="col">Commits count</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for commit in commit_leaderboard %}
-        <tr>
-            <th scope="row">{{ commit.id }}</th>
-            <td>{{ commit.name }}</td>
-            <td>{{ commit.count }}</td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    <div class="cards">
-
-        <div class="card shadow-lg card-bg-custom" style="width: 18rem;">
-            <img src="{{ url_for('static', path='photos/prodday.png') }}" class="card-img" alt="...">
-            <div class="card-body card-bg-custom">
-                <p class="card-text fw-bold fs-5 text-center">Most productive day</p>
-                <p class="card-text fw-bold fs-3 text-center">Monday</p>
-                <canvas class="graph1" id="myChart" width="800" height="800"></canvas>
-            </div>
-        </div>
-
-        <div class="card card-bg-custom shadow-lg" style="width: 18rem;">
-            <img src="{{ url_for('static', path='photos/unprodday.png') }}" class="card-img-horizontal" alt="...">
-            <div class="card-body card-bg-custom">
-                <p class="card-text fw-bold fs-5 text-center ">Most unproductive day</p>
-                <p class="card-text fw-bold fs-3 text-center">Friday</p>
-
-            </div>
-        </div>
-        <div class="card shadow-lg card-bg-custom" style="width: 18rem;">
-            <img src="{{ url_for('static', path='photos/commited.png') }}" class="card-img" alt="...">
-            <div class="card-body card-bg-custom">
-                <p class="card-text fw-bold fs-5 text-center">Lines per commit</p>
-                <p class="card-text fw-bold fs-3 text-center">~50</p>
-
-            </div>
-        </div>
-
-        <div class="card card-bg-custom shadow-lg" style="width: 18rem;">
-            <img src="{{ url_for('static', path='photos/added.png') }}" class="card-img-horizontal" alt="...">
-            <div class="card-body card-bg-custom">
-                <p class="card-text fw-bold fs-5 text-center ">Lines added</p>
-                <p class="card-text fw-bold fs-3 text-center">+73</p>
-
-            </div>
-        </div>
+    <div id="leaderboard">
+        <table class="table users-commits">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Username</th>
+                <th scope="col">Commits count</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for commit in commit_leaderboard %}
+            <tr>
+                <th scope="row">{{ commit.id }}</th>
+                <td>{{ commit.name }}</td>
+                <td>{{ commit.count }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
 </div>
 
 </body>
-
 </html>
-<script>
-const ctx = document.getElementById('myChart').getContext('2d');
-const myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ['December', 'January', 'February', 'March', 'April', 'May', 'June'],
-        datasets: [{
-            label: 'How many commits',
-            data: [12, 19, 13, 5, 2, 3, 2],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            fill: true,
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
-
-
-
-
-</script>

@@ -26,10 +26,22 @@
     background-color:#4527A0 !important;
 }
 
-#stats-wrapper {
+.stats-wrapper {
     margin: 15px;
 }
 
 .stats-icon {
     padding-right: 5px;
+}
+
+.special-line {
+    padding-left: 50px;
+}
+
+#leaderboard {
+    padding: 35px;
+}
+
+#leaderboard-line {
+    width: 100%;
 }

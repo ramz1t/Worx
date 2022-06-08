@@ -5,6 +5,7 @@ from data.data import Sessions
 from logic.auth import get_password_hash, verify_password
 from models.repo import ApiCreateRepo
 
+
 def create_new_user(api_user) -> JSONResponse:
     with Sessions() as session:
         if not session.query(User).filter_by(email=api_user.email).first() is None:
