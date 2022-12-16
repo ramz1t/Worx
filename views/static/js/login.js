@@ -1,8 +1,8 @@
 async function login() {
     var pass = document.getElementById("password").value;
     var email = document.getElementById("email").value;
-    var data = {'username': email, 'password': pass};
-    var response = await fetch(SERVER_DOMAIN + '/token', {
+    var data = { 'username': email, 'password': pass };
+    var response = await fetch('/token', {
         method: 'POST',
         headers: {
             'accept': 'application/json'
