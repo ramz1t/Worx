@@ -44,6 +44,6 @@ async function submit() {
             toast.show()
         }
     } else {
-        window.open(SERVER_DOMAIN + '/', '_self');
+        window.open('/', '_self');
     }
 }
