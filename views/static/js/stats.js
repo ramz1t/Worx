@@ -9,7 +9,7 @@ async function get_stats() {
     } else {
         return;
     }
-    window.open(SERVER_DOMAIN + '/stats/' + reponame + '/' + username, '_self')
+    window.open('/stats/' + reponame + '/' + username, '_self')
 }
 
 async function set_chosen_repo() {
@@ -19,7 +19,7 @@ async function set_chosen_repo() {
         return;
     }
     var wrapper = document.getElementById("users_wrapper");
-    var users = await fetch(SERVER_DOMAIN + '/users/' + reponame)
+    var users = await fetch('/users/' + reponame)
     var data = await users.json()
     wrapper.innerHTML = "";
     for (let i = 0; i < data.length; i++) {
